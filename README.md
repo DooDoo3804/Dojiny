@@ -87,9 +87,9 @@
 | 로그아웃             | get      | /accounts/logout/                                            | 초기 화면                                           |
 | 회원 가입            | get/post | /accounts/signup/                                            | (성공시) 메인 페이지, (실패시) 회원 가입 페이지     |
 | 비밀번호 수정        | post     | /accounts/password/                                          | (성공시) 메인 페이지, (실패시) 비밀번호 수정 페이지 |
-| 회원 정보 페이지     | get      | /accounts/profile/                                           | 회원 정보 프로필                                    |
-| 회원 정보 수정       | post     | /accounts/update/                                            | (성공시) 메인 페이지, (실패시) 정보 수정 페이지     |
-| 회원 정보 삭제       | post     | /accounts/delete/                                            | 초기 화면                                           |
+| 회원 정보 페이지     | get      | /accounts/<int:user_pk >/profile/                            | 회원 정보 프로필                                    |
+| 회원 정보 수정       | post     | /accounts/<int:user_pk >/update/                             | (성공시) 메인 페이지, (실패시) 정보 수정 페이지     |
+| 회원 정보 삭제       | post     | /accounts/<int:user_pk >/delete/                             | 초기 화면                                           |
 | 팔로우               | get      | /accounts/<int:user_pk >/follow/                             | behind 페이지                                       |
 | _**감독 behind**_    | -        | -                                                            | -                                                   |
 | behind 화면          | get      | /behinds/                                                    | behind 페이지                                       |
@@ -114,7 +114,7 @@
 
 ## 4. ERD 구조
 
-![image-20221115155243015](C:\Users\multicampus\Desktop\Dojiny\README.assets\image-20221115155243015.png)
+![image-20221115155243015](README.assets/image-20221115155243015.png)
 
 
 
