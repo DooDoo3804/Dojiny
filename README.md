@@ -32,18 +32,17 @@
   - 닉네임 / 이메일 / 유저아이디 중복검사
 
 - 로그인이 필요한 페이지
-  - behind, 영화 추천, 마이 페이지
+  - 전체 페이지
 
 - 로그인 검사
   - 아이디와 비밀번호가 일치하지 않으면 "이이디 또는 비밀번호가 일치하지 않습니다." 띄우기
   - 이외의 에러 처리
   - behind 작성을 위한 인증 관련 문구를 띄워줌
     - 주어진 email로 해당 정보/파일을 받음
-  - 로그인 이후 메이 페이지 이동
+  - 로그인 이후 메인 페이지 이동
 
 #### 2. 영화 검색
 
-- 로그인이 진행되지 않아도 검색 기능 가능
 - 장르와 년도를 선택하는 것으로 영화 분류하여 선택 가능
 - 정렬 기능
 - 영화 디테일 정보 확인 가능
@@ -64,7 +63,8 @@
 
 #### 4. 영화 추천 페이지
 
-- 내가 평가한(좋아요 누른) 영화를 바탕으로 영화 추천
+- 내가 평가한(별점 매긴) 영화를 바탕으로 영화 추천
+- 영화 평가를 하지 않았다면 평점 높은 영화 추천
 - 누르면 디테일 페이지로 이동
 
 #### 5. 마이 페이지
@@ -80,32 +80,35 @@
 
 ## 3. API 구성
 
-| 기능                 | method   | url                             | return page                                         |
-| :------------------- | -------- | ------------------------------- | --------------------------------------------------- |
-| _**로그인 기능**_    | -        | -                               | -                                                   |
-| 로그인 화면          | get/post | /accounts/login/                | 로그인  / 메인 페이지                               |
-| 로그아웃             | get      | /accounts/logout/               | 초기 화면                                           |
-| 회원 가입            | get/post | /accounts/signup/               | (성공시) 메인 페이지, (실패시) 회원 가입 페이지     |
-| 비밀번호 수정        | post     | /accounts/password/             | (성공시) 메인 페이지, (실패시) 비밀번호 수정 페이지 |
-| 회원 정보 페이지     | get      | /accounts/profile/              | 회원 정보 프로필                                    |
-| 회원 정보 수정       | post     | /accounts/update/               | (성공시) 메인 페이지, (실패시) 정보 수정 페이지     |
-| 회원 정보 삭제       | post     | /accounts/delete/               | 초기 화면                                           |
-| _**감독 behind**_    | -        | -                               | -                                                   |
-| behind 화면          | get      | /behinds/                       | behind 페이지                                       |
-| behind 작성          | post     | /behinds/create/                | behind 페이지                                       |
-| behind 디테일        | get      | /behinds/int:behinds_pk/detail/ | behind 디테일 페이지                                |
-| behind 삭제          | post     | /behinds/delete/                | (성공 후) behind 페이지                             |
-| behind 수정          | post     | /behinds/update/                | (성공 후) 디테일 페이지                             |
-| comment 작성         | post     | /behinds/comment_create/        | (성공 후) 디테일 페이지                             |
-| behind likes         | get      | /behinds/likes/                 | (토글) behind 페이지                                |
-| _**영화 추천**_      | -        | -                               | -                                                   |
-| 추천 페이지          | get      | /recommandations/               | 추천 페이지                                         |
-| _**영화 검색**_      | -        | -                               | -                                                   |
-| 검색 메인 페이지     | get      | /movies/                        | 검색 메인 페이지                                    |
-| 영화 디테일          | get      | /movies/int:movie_pk/detail/    | 영화 디테일 페이지                                  |
-| _**마이 페이지**_    | -        | -                               | -                                                   |
-| 팔로우 감독 페이지   | get      | /mypage/directors/              | 팔로우한 감독 페이지                                |
-| 좋아요한 영화 페이지 | get      | /mypage/likemovies/             | 좋아요한 영화 페이지                                |
+| 기능                 | method   | url                                                          | return page                                         |
+| :------------------- | -------- | ------------------------------------------------------------ | --------------------------------------------------- |
+| _**로그인 기능**_    | -        | -                                                            | -                                                   |
+| 로그인 화면          | get/post | /accounts/login/                                             | 로그인  / 메인 페이지                               |
+| 로그아웃             | get      | /accounts/logout/                                            | 초기 화면                                           |
+| 회원 가입            | get/post | /accounts/signup/                                            | (성공시) 메인 페이지, (실패시) 회원 가입 페이지     |
+| 비밀번호 수정        | post     | /accounts/password/                                          | (성공시) 메인 페이지, (실패시) 비밀번호 수정 페이지 |
+| 회원 정보 페이지     | get      | /accounts/profile/                                           | 회원 정보 프로필                                    |
+| 회원 정보 수정       | post     | /accounts/update/                                            | (성공시) 메인 페이지, (실패시) 정보 수정 페이지     |
+| 회원 정보 삭제       | post     | /accounts/delete/                                            | 초기 화면                                           |
+| 팔로우               | get      | /accounts/<int:user_pk >/follow/                             | behind 페이지                                       |
+| _**감독 behind**_    | -        | -                                                            | -                                                   |
+| behind 화면          | get      | /behinds/                                                    | behind 페이지                                       |
+| behind 작성          | post     | /behinds/create/                                             | behind 페이지                                       |
+| behind 디테일        | get      | /behinds/<int:behinds_pk >/detail/                           | behind 디테일 페이지                                |
+| behind 삭제          | post     | /behinds/<int:behinds_pk >/delete/                           | (성공 후) behind 페이지                             |
+| behind 수정          | post     | /behinds/<int:behinds_pk >/update/                           | (성공 후) 디테일 페이지                             |
+| comment 작성         | post     | /behinds/<int:behinds_pk >/comment_create/                   | (성공 후) 디테일 페이지                             |
+| comment 수정         | post     | /behinds/<int:behinds_pk >/comment_update/<int:comment_pk >/ | (성공 후) 디테일 페이지                             |
+| comment 삭제         | post     | /behinds/<int:behinds_pk >/comment_delete/<int:comment_pk >/ | (성공 후) 디테일 페이지                             |
+| behind likes         | get      | /behinds/<int:behinds_pk >/likes/                            | (토글) behind 페이지                                |
+| _**영화 추천**_      | -        | -                                                            | -                                                   |
+| 추천 페이지          | get      | /recommandations/                                            | 추천 페이지                                         |
+| _**영화 검색**_      | -        | -                                                            | -                                                   |
+| 검색 메인 페이지     | get      | /movies/                                                     | 검색 메인 페이지                                    |
+| 영화 디테일          | get      | /movies/<int:movie_pk >/detail/                              | 영화 디테일 페이지                                  |
+| _**마이 페이지**_    | -        | -                                                            | -                                                   |
+| 팔로우 감독 페이지   | get      | /mypage/<int:user_pk >/directors/                            | 팔로우한 감독 페이지                                |
+| 좋아요한 영화 페이지 | get      | /mypage/<int:user_pk >/likemovies/                           | 좋아요한 영화 페이지                                |
 
 
 
