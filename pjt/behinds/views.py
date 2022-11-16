@@ -27,5 +27,6 @@ def create(request):
             behind.user = request.user
             behind.save()
             return redirect('behinds:index')
+        return render(request, 'behinds/create.html')
     else:
         return render(request, 'behinds/create.html')

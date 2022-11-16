@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>전체 영화</h1>
+<hr>
+  {% for movie in movies %}
+    <a href="{% url 'movies:detail' movie.pk %}">
+      <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" style="width:100px; height:100px;" alt="movie img">
+    </a>
+    {{ movie.title }}
+
+    <p>이미지 누르면 디테일 페이지로 이동</p>
+    <hr>
+  {% endfor %}
+{% endblock content %}
