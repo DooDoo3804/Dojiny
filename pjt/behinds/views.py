@@ -13,16 +13,19 @@ def index(request):
 
 def create(request):
     if request.method == "POST":
-        form = BehindForm(request.POST)
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        csrfmiddlewaretoken = request.POST.get('csrfmiddlewaretoken')
+        behind_values = {
+            'title': title,
+            'content': content,
+            'csrfmiddlewaretoken': csrfmiddlewaretoken
+        }
+        form = BehindForm(behind_values)
         if form.is_valid():
             behind = form.save(commit=False)
             behind.user = request.user
             behind.save()
             return redirect('behinds:index')
-
     else:
-        form = BehindForm()
-        context = {
-            'form' : form
-        }
-        return render(request, 'behinds/create.html', context)
+        return render(request, 'behinds/create.html')

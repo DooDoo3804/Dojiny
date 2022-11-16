@@ -4,8 +4,15 @@
     <h1>CREATE PAGE</h1>
     <form action="{% url 'behinds:create' %}" method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+        <label for="title">Title: </label>
+        <input type="text" name="title" id="title" placeholder = "제목">
+        <label for="content">Content: </label>
+        <input type="text" name="content" id="content" placeholder = "내용">
         <input type="submit" value="제출">
     </form>
     <a href="{% url 'behinds:index' %}">[back]</a>
 {% endblock content %}
+{% block script %}
+
+
+{% endblock script %}

@@ -102,7 +102,7 @@
 | comment 삭제         | post     | /behinds/<int:behinds_pk >/comment_delete/<int:comment_pk >/ | (성공 후) 디테일 페이지                             |
 | behind likes         | get      | /behinds/<int:behinds_pk >/likes/                            | (토글) behind 페이지                                |
 | _**영화 추천**_      | -        | -                                                            | -                                                   |
-| 추천 페이지          | get      | /recommandations/                                            | 추천 페이지                                         |
+| 추천 페이지          | get      | /recommendations/                                            | 추천 페이지                                         |
 | _**영화 검색**_      | -        | -                                                            | -                                                   |
 | 검색 메인 페이지     | get      | /movies/                                                     | 검색 메인 페이지                                    |
 | 영화 디테일          | get      | /movies/<int:movie_pk >/detail/                              | 영화 디테일 페이지                                  |
