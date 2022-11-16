@@ -2,11 +2,21 @@
 
 {% block content %}
     <a href="{% url 'behinds:create' %}">[create]</a>
+    <h1>감독 비하인드</h1>
     <hr>
+    <div>
+        <select name="types" id="types">
+            <option value="update">최신순</option>
+            <option value="popular">인기순</option>
+        </select>
+        <input type="text">
+        <button>[돋보기 img]</button>
+    </div>
     {% for behind in behinds %}
     <p>제목 : {{ behind.title }}</p>    
     <p>내용 : {{ behind.content }}</p>
-    <p> {{ behind.user.behind_auth }}</p>
+    <p> {{ behind.user.username }} 감독</p>
+    <button>[팔로우]</button>
     <hr>
     {% endfor %}
 {% endblock content %}
