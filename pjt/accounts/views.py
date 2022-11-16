@@ -13,7 +13,7 @@ def index(request) :
     pass
     return render(request, 'accounts/index.html')
     
-def login(request):
+def signin(request):
     if request.user.is_authenticated:
         return redirect('behinds:index')
     if request.method == 'POST':
@@ -26,28 +26,31 @@ def login(request):
     context = {
         'form': form,
     }
-    return render(request, 'accounts/login.html', context)
+    return render(request, 'accounts/signin.html', context)
 
 def signup(request) :
     if request.method == "POST":
-        # username = request.POST.get('username')
+        # name = request.POST.get('name')
         # nickname = request.POST.get('nickname')
-        # password = request.POST.get('password')
+        # password1 = request.POST.get('password')
+        # password2 = request.POST.get('password')
         # email = request.POST.get('email')
         # csrfmiddlewaretoken = request.POST.get('csrfmiddlewaretoken')
         # user_info = {
-        #     'username': username,
-        #     'nickname': nickname,
-        #     'password': password,
-        #     'email': email,
-        #     'csrfmiddlewaretoken': csrfmiddlewaretoken,
+        #     'csrfmiddlewaretoken': [csrfmiddlewaretoken],
+        #     'name': [name],
+        #     'nickname': [nickname],
+        #     'password': [password],
+        #     'email': [email],
         # }
+        # print(request.POST)
+        # print(user_info)
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.user = request.user
-            user.save()
-            return redirect('accounts:index')
+            user = form.save()
+            auth_login(request, user)
+            return redirect('behinds:index')
+
         return render(request, 'accounts/signup.html')
     else:
         form = CustomUserCreationForm()

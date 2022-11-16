@@ -10,8 +10,8 @@
     <img src="{% static 'images/spiderman.jpg' %}" alt="">
     <div class="title">With great power comes great responsibility.</div>
     <div class="login">
-      <a href="">SIGN UP</a> |
-      <a href="">SIGN IN</a>
+      <a href="{% url 'accounts:signup' %}">SIGN UP</a> |
+      <a href="{% url 'accounts:signin' %}">SIGN IN</a>
     </div>
   </div>
 {% endblock content %}

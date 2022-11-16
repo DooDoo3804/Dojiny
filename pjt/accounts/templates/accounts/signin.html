@@ -2,7 +2,7 @@
 {% block content %}
     <h1>SIGN UP</h1>    
     <h1>SIGN IN</h1>
-    <form action="{% url 'accounts:login' %}" method="POST">
+    <form action="{% url 'accounts:signin' %}" method="POST">
         {% csrf_token %}
         {% comment %} <label for="email">Email: </label>
         <input type="text" name="email" id="email" placeholder = "이메일">

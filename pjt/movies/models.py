@@ -4,7 +4,6 @@ from django.conf import settings
 
 class Movie(models.Model) :
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
-    
     genres = models.CharField(max_length=200)
     movie_id = models.IntegerField()
     original_title = models.CharField(max_length=50)
