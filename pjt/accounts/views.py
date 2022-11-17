@@ -1,6 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
+
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import (
     AuthenticationForm, 
     UserCreationForm, 
@@ -60,6 +63,27 @@ def logout(request):
         auth_logout(request)
     return redirect('http://127.0.0.1:8000/')
 
+def follow(request, user_pk) :
+    if request.user.is_authenticated:
+        me = request.user
+        you = get_object_or_404(get_user_model(), pk=user_pk)
+        if me != you:
+            if you.followers.filter(pk=me.pk).exists():
+                you.followers.remove(me)
+                isFollowed = False
+            else:
+                you.followers.add(me)
+                isFollowed = True
+            context = {
+                'isFollowed': isFollowed,
+                'followers_count': you.followers.count(),
+                'followings_count': you.followings.count(),
+            }
+            return JsonResponse(context)
+        return redirect('behinds:index')
+    return redirect('accounts:login')
+
+
 def password(request) :
     pass
     return render(request, 'accounts/password.html')
@@ -75,7 +99,3 @@ def update(request) :
 def delete(request) :
     pass
     return render(request, 'accounts/delete.html')
-
-def follow(request) :
-    pass
-    return render(request, 'accounts/follow.html')
