@@ -21,14 +21,32 @@
     <input type="submit" value="삭제">
   </form>
   <hr>
+
   <form action="{% url 'behinds:comment_create' behind.pk %}"  method="POST">
     {% csrf_token %}
     <label for="{{ form.content.id_for_label }}">댓글:</label>
     {{ form.content }}
     {{ form.content.errors }}
     <input type="submit" value="작성">
-  </form>  
-  <hr>
+  </form>
+
+  <div>
+    {% for comment in comments %}
+    <div>
+      {{ comment.content }}
+      {% if comment.user_comment == user %}
+        <form action="{% url 'behinds:comment_update' behind.pk comment.pk %}">
+          <input type="submit" value="수정">
+        </form>
+        <form action="{% url 'behinds:comment_delete' behind.pk comment.pk %}">
+          <input type="submit" value="삭제">
+        </form>
+        {% endif %}
+        <hr>
+      </div>
+    {% endfor %}
+  </div>
+
   <a href="{% url 'behinds:index' %}">[back]</a>
 
 {% endblock content %}
