@@ -18,9 +18,10 @@
       </div>
       <div class="content">
         {% comment %} <label for="content">Content: </label> {% endcomment %}
-        <input type="text" name="content" id="content" placeholder = "   내용을 입력하세요.">
+        <textarea id="content" name="content" cols="30" rows="10" placeholder="내용을 입력하세요."></textarea>
+        {% comment %} <input type="text" name="content" id="content" placeholder = "   내용을 입력하세요."> {% endcomment %}
       </div>
-      <input type="submit" class="submit-btn">
+      <input type="submit" class="submit-btn" value="작성하기">
       {% comment %} <input type="submit" value="제출" class="submit-btn"> {% endcomment %}
     </form>
   </div>

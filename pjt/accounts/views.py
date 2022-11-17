@@ -20,7 +20,7 @@ def signin(request):
         form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect(request.GET.get('next') or 'behinds:index')
+            return redirect(request.GET.get('next') or 'http://127.0.0.1:8000/menu/')
     else:
         form = CustomAuthenticationForm()
     context = {
@@ -29,6 +29,8 @@ def signin(request):
     return render(request, 'accounts/signin.html', context)
 
 def signup(request) :
+    if request.user.is_authenticated:
+        return redirect('http://127.0.0.1:8000/menu/')
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -40,7 +42,7 @@ def signup(request) :
                 user.nickname = user.username
                 user.save()
             auth_login(request, user)
-            return redirect('behinds:index')
+            return redirect('http://127.0.0.1:8000/menu/')
         form = CustomUserCreationForm()
         context = {
             'form': form,
