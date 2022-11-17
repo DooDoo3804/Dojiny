@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import BehindForm
-from .models import Behind
+from .forms import BehindForm, CommentForm
+from .models import Behind, Comment
 
 
-# Create your views here.
+
+# 아래부터 behind
 def index(request):
     behinds = Behind.objects.all()
     context = {
@@ -43,8 +44,10 @@ def create(request):
 # 디테일 페이지
 def detail(request, behind_pk):
     behind = Behind.objects.get(pk=behind_pk)
+    form = CommentForm()
     context = {
         'behind': behind,
+        'form': form
     }
     return render(request, 'behinds/detail.html', context)
 
@@ -76,3 +79,26 @@ def update(request, behind_pk):
         'form': form
     }
     return render(request, 'behinds/update.html', context)
+
+# 아래부터 comment
+def comment_create(request, behind_pk):
+    print('시작')
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        behind = Behind.objects.get(pk=behind_pk)
+        if form.is_valid():
+            form.save(commit=False)
+            form.user_comment = request.user
+            form.behind_at = Behind
+            form.save()
+            print('성공')
+            return redirect('behinds:detail', behind.pk)
+    else:
+        print('실패1')
+        form = CommentForm()
+        context = {
+            'form': form
+        }
+        return redirect('behinds:detail', behind_pk, context)
+    print('실패2')
+    return redirect('behinds:detail', behind_pk)
