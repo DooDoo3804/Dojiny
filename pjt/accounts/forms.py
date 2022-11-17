@@ -37,6 +37,9 @@ class CustomUserCreationForm(UserCreationForm):
                 'style': 'width: 90%;' 'height: 40px;' 'border: none;' 'border-radius: 10px;' 'background-color: #D9D9D9;' 'font-family: login;' 'padding-left: 10px;',
             }
         ),
+        required = False,
+        help_text='Enter Nickname',
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '입력하지 않으면 username으로 자동생성 되며 추후 개인 정보에서 수정 가능합니다.'}),
     )
 
     email = forms.EmailField(

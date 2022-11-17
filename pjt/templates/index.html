@@ -12,6 +12,10 @@
     <div class="login">
       <a href="{% url 'accounts:signup' %}">SIGN UP</a> |
       <a href="{% url 'accounts:signin' %}">SIGN IN</a>
+      <form action="{% url 'accounts:logout' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="로그아웃">
+      </form>
     </div>
   </div>
 {% endblock content %}
