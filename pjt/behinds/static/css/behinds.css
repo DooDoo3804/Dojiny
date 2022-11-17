@@ -5,7 +5,8 @@
 
 body {
   background-color: black;
-  height: 98vh;
+  height: 50rem;
+  min-width: 620px;
   font-family: behind;
 }
 
@@ -15,15 +16,15 @@ a {
 }
 
 .nav {
-  /* width: 97%; */
+  width: 97%;
   /* height: 100px; */
-  height: 8vh;
+  height: 5rem;
   margin-top: 0;
   padding-left: 3%;
   padding-top: 5%;
   padding-bottom: 2%;
   background-image: url("../images/behinds.jpg");
-  font-size: 3em;
+  font-size: 2.5em;
   color: white;
 }
 
@@ -45,28 +46,32 @@ a {
 }
 
 .img {
-  width: 40px;
-  height: 40px;
-  margin-right: 50px;
+  width: 3rem;
+  height: 3rem;
+  /* margin-top: 30px; */
+  margin-right: 40px;
+  margin-bottom: 20px;
 }
 
 .box {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: calc(98vh - 260px);
+  height: 45rem;
 }
 
 .select-box {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-  height: 30px;
+  margin-top: 40px;
+  width: 100%;
+  height: 2rem;
 }
 
 .middle-box {
   width: 100%;
-  max-height: calc(98vh - 400px);
+  /* max-height: calc(98vh - 400px); */
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -74,9 +79,9 @@ a {
 }
 
 .form-box {
-  width: 50%;
-  height: 100%;
-  margin-top: 20px;
+  width: 60rem;
+  height: 35rem;
+  /* margin-top: 20px; */
   /* margin-left: 10px; */
   overflow-y: scroll;
   display: flex;

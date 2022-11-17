@@ -8,8 +8,9 @@
 {% block content %}
   <div class="signup">
     <div class="login-tag">
-      <h1>SIGN UP</h1>
-      <h1>SIGN IN</h1>
+      <a href="{% url 'accounts:signup' %}" class="a"><h1>SIGN UP</h1></a>
+      <h1>|</h1>
+      <a href="{% url 'accounts:signin' %}" class="a active"><h1>SIGN IN</h1></a>
     </div>
     <form action="{% url 'accounts:signup' %}" method="POST">
       {% csrf_token %}
