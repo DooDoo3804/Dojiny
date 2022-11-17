@@ -5,7 +5,7 @@
 {% endblock css %}
 
 {% block content %}
-  <h1>수정 페이지</h1>
+  <h1>디테일 페이지</h1>
   
   <p>제목 : {{ behind.title }}</p>
   <p>내용 : {{ behind.content }}</p>
@@ -20,6 +20,15 @@
     {% csrf_token %}
     <input type="submit" value="삭제">
   </form>
+  <hr>
+  <form action="{% url 'behinds:comment_create' behind.pk %}"  method="POST">
+    {% csrf_token %}
+    <label for="{{ form.content.id_for_label }}">댓글:</label>
+    {{ form.content }}
+    {{ form.content.errors }}
+    <input type="submit" value="작성">
+  </form>  
+  <hr>
   <a href="{% url 'behinds:index' %}">[back]</a>
 
 {% endblock content %}
