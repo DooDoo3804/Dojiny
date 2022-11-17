@@ -8,8 +8,6 @@
   <h1>SIGN IN</h1>
   <form action="{% url 'accounts:signup' %}" method="POST">
       {% csrf_token %}
-      {% comment %} {{ form.as_p }} {% endcomment %}
-
       <div>
         <label for="{{ form.username.id_for_label }}">Username:</label>
         {{ form.username }}
