@@ -18,5 +18,5 @@ class Movie(models.Model) :
 
 class VoteMovie(models.Model) :
     like_users = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    like_moveis = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    like_movies = models.ForeignKey(Movie, on_delete=models.CASCADE)
     vote = models.IntegerField()
