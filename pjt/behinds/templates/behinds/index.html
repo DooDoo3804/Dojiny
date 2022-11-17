@@ -5,6 +5,10 @@
   <link rel="stylesheet" href="{% static 'css/behinds.css' %}">
 {% endblock css %}
 
+{% block script %}
+  <script type="text/javascript" src="{% static "js/search.js" %}"></script>
+{% endblock script %}
+
 {% block content %}
   <div class="nav">
     감독 비하인드
@@ -15,18 +19,31 @@
         <option value="update">최신순</option>
         <option value="popular">인기순</option>
       </select>
-      <input type="text" class="input">
-      <img src="{% static "images/search.png" %}" alt="" class="search">
+      <input type="text" class="input" id="search-input">
+      <img src="{% static "images/search.png" %}" alt="" class="search" id="search">
     </div>
-    <div class="form-box">
-      {% for behind in behinds %}
-        <p>제목 : {{ behind.title }}</p>    
-        <p>내용 : {{ behind.content }}</p>
-        <p> {{ behind.user.username }} 감독</p>
-        <button>[팔로우]</button>
-      {% endfor %}
+    <div class="middle-box">
+      <div class="form-box" id="form-box">
+        {% for behind in behinds %}
+          <div class="form-list" id="form-list">
+            <div class="profile">
+              <div class="profile-user">
+                <img src="{% static "images/user.png" %}" alt="" class="user">
+                <p id="director">{{ behind.user.username }} 감독</p>
+              </div>
+              <button class="follow">팔로우</button>
+            </div>
+            <h2>제목 : {{ behind.title }}</h2>    
+            <p>내용 : {{ behind.content }}</p>
+            <div class="like">
+              <img src="{% static "images/love.png" %}" alt="" class="like-img">
+              <p>12</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
     </div>
-    <a href="{% url 'behinds:create' %}"><img src="{% static "images/create.png" %}" alt="" class="img"></a>
+    <a href="{% url 'behinds:create' %}"><img src="{% static "images/create.png" %}" alt="" class="img" onclick=createPage()></a>
   </div>
 {% endblock content %}
 

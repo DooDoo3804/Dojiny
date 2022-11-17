@@ -4,3 +4,7 @@ from django.shortcuts import render
 def index(request):
     pass
     return render(request, 'index.html')
+
+def menu(request):
+    pass
+    return render(request, 'menu.html')
