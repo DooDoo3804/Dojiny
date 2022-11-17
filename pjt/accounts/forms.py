@@ -24,9 +24,9 @@ class CustomUserCreationForm(UserCreationForm):
 
     nickname = forms.CharField(
         max_length=200,
-        required = True,
-        help_text='Enter Username',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}),
+        required = False,
+        help_text='Enter Nickname',
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '입력하지 않으면 username으로 자동생성 되며 추후 개인 정보에서 수정 가능합니다.'}),
     )
 
     email = forms.EmailField(
