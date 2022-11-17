@@ -1,36 +1,43 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block css %}
+  <link rel="stylesheet" href="{% static 'css/signup.css' %}">
 {% endblock css %}
 
 {% block content %}
-  <h1>SIGN UP</h1>    
-  <h1>SIGN IN</h1>
-  <form action="{% url 'accounts:signup' %}" method="POST">
+  <div class="signup">
+    <div class="login-tag">
+      <h1>SIGN UP</h1>
+      <h1>SIGN IN</h1>
+    </div>
+    <form action="{% url 'accounts:signup' %}" method="POST">
       {% csrf_token %}
       {% comment %} {{ form.as_p }} {% endcomment %}
-
-      <div>
-        <label for="{{ form.username.id_for_label }}">Username:</label>
+      <div class="input">
+        <label for="{{ form.username.id_for_label }}">Username</label><br>
         {{ form.username }}
         {{ form.username.errors }}
       </div>
-      <div>
-        <label for="{{ form.nickname.id_for_label }}">Nickname:</label>
+      <div class="input">
+        <label for="{{ form.nickname.id_for_label }}">Nickname</label><br>
         {{ form.nickname }}
         {{ form.nickname.errors }}
       </div>
-      <div>
-        <label for="{{ form.email.id_for_label }}">Email:</label>
+      <div class="input">
+        <label for="{{ form.email.id_for_label }}">Email</label><br>
         {{ form.email }}
         {{ form.email.errors }}
       </div>
-      <div>
-        <label for="{{ form.password1.id_for_label }}">Password:</label>
+      <div class="input">
+        <label for="{{ form.password1.id_for_label }}">Password</label><br>
         {{ form.password1 }}
         {{ form.password1.errors }}
       </div>
       <p>감독 인증이 필요하신 분들은 _____@gmail.com으로 필요한 서류를 제출하시길 바랍니다.</p>
-      <input type="submit" value="SIGN UP">
-  </form>
+      <div class="submit">
+        <button type="submit" class="submit-btn">SIGN UP</button>
+      </div>
+    </form>
+  </div>
 {% endblock content %}
