@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block css %}
-
 {% endblock css %}
+
+{% block script %}
+  <script type="text/javascript" src="{% static "js/edit.js" %}"></script>
+{% endblock script %}
 
 {% block content %}
   <h1>디테일 페이지</h1>
@@ -33,14 +37,33 @@
   <div>
     {% for comment in comments %}
     <div>
-      {{ comment.content }}
+      <span id="comment-{{ comment.pk }}" >{{ comment.content }}</span>
       {% if comment.user_comment == user %}
-        <form action="{% url 'behinds:comment_update' behind.pk comment.pk %}">
+        <form
+          class="update-form update-form{{ comment.pk }}"
+          data-comment-id="{{ comment.pk }}"
+          data-comment-content="{{ comment.content }}"
+          style="display:block;"
+        >
           <input type="submit" value="수정">
+        </form>
+        <form
+          class="udpate-form-axios update-form-axios{{ comment.pk }}"
+          data-comment-id="{{ comment.pk }}"
+          data-comment-content="{{ comment.content }}"
+          data-behind-id="{{ behind.pk }}"
+          style="display:none;"
+        >
+          <input type="submit" value="수정2">
+          <button>취소</button>
         </form>
         <form action="{% url 'behinds:comment_delete' behind.pk comment.pk %}">
           <input type="submit" value="삭제">
         </form>
+        <div id="edit-div{{ comment.pk }}" style="display:none;">
+          {% comment %} <textarea id="edit-area{{ comment.pk }}" cols="30" rows="10"></textarea> {% endcomment %}
+          <input type="text" id="edit-area{{ comment.pk }}">
+        </div>
         {% endif %}
         <hr>
       </div>
