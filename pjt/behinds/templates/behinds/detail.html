@@ -78,7 +78,9 @@
                 <input type="text" id="edit-area{{ comment.pk }}">
               </div>
             {% endif %}
-            <span id="comment-{{ comment.pk }}" >{{ comment.content }}</span>
+            <div class="comment-scroll">
+              <span id="comment-{{ comment.pk }}" >{{ comment.content }}</span>
+            </div>
           </div>
         {% endfor %}
       </div>
