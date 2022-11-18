@@ -69,7 +69,6 @@ def delete(request, behind_pk):
 # behind 수정
 def update(request, behind_pk):
     behind = get_object_or_404(Behind, pk=behind_pk)
-    print(request.body)
     if request.user == behind.user:
         if request.method == 'POST':
             form = BehindForm(request.POST, instance=behind)
@@ -97,9 +96,7 @@ def comment_create(request, behind_pk):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.behind = behind
-            print(behind)
             comment.user_comment = request.user
-            print(request.user)
             form.save()
             return redirect('behinds:detail', behind.pk)
     else:
@@ -148,8 +145,8 @@ def comment_delete(request, behind_pk, comment_pk):
         return redirect('behinds:detail', behind_pk)
 
 # likes
-def likes(request, behinds_pk):
-    behind = Behind.objects.get(behids_pk)
+def likes(request, behind_pk):
+    behind = Behind.objects.get(pk=behind_pk)
     if request.user.is_authenticated:
         if request.user != behind.user :
             if behind.like_user.filter(pk=request.user.pk).exists():
@@ -157,10 +154,10 @@ def likes(request, behinds_pk):
                 isLiked = False
             else:
                 behind.like_user.add(request.user)
-                isLikes = True
-            context = {
-                'isLiked': isLiked,
-                'like_user_count': behind.like_user.count(),
-            }
-            return JsonResponse(context)
+                isLiked = True
+        context = {
+            'isLiked': isLiked,
+            'like_user_count': behind.like_user.count(),
+        }
+        return JsonResponse(context)
     return redirect('accounts:login')
