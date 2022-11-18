@@ -1,29 +1,29 @@
+const likeForms = document.querySelectorAll('.like-img-button')
 
-const forms = document.querySelectorAll('.like-img-button')
-const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
-
-forms.forEach(form => {
+likeForms.forEach(form => {
   form.addEventListener('click', function (event) {
     event.preventDefault()
     // console.log(event)
     const behindId = event.target.dataset.behindId
-    console.log(1)
     axios({
-      method: 'post',
+      method: 'get',
       url: `http://127.0.0.1:8000/behinds/${behindId}/likes/`,
-      headers: {'X-CSRFToken': csrftoken},
     })
       .then(response => {
-        console.log(response)
+        const isLiked = response.data.isLiked
+        const likeImgBtn = document.querySelector(`.like-img-button-${behindId}`)
+        if (isLiked === true) {
+          likeImgBtn.setAttribute('src', "/static/images/heart.png")
+        } else {
+          likeImgBtn.setAttribute('src', "/static/images/love.png")
+        }
+        const likeCount = response.data.like_user_count
+        console.log(likeCount)
+        const likePTag = document.querySelector(`#like-count-${behindId}`)
+        likePTag.innerText = likeCount
       })
       .catch(err => {
         console.log(err)
       })
     })
   })
-  // const isFollowed = response.data.isFollowed
-  // if (isFollowed === true) {
-  //   followBtn.innerText = '언팔로우'
-  // } else {
-  //   followBtn.innerText = '팔로우'
-  // }
