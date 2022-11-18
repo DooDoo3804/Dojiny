@@ -107,7 +107,8 @@
 | 검색 메인 페이지     | get      | /movies/                                                     | 검색 메인 페이지                                    |
 | 영화 디테일          | get      | /movies/<int:movie_pk >/detail/                              | 영화 디테일 페이지                                  |
 | _**마이 페이지**_    | -        | -                                                            | -                                                   |
-| 팔로우 감독 페이지   | get      | /mypage/<int:user_pk >/directors/                            | 팔로우한 감독 페이지                                |
+| 회원 각자 페이지     | get      | /mypage/<int:user_pk >/mypage/                               |                                                     |
+| 팔로우 감독 페이지   | get      | /mypage/<int:user_pk >/likedirectors/                        | 팔로우한 감독 페이지                                |
 | 좋아요한 영화 페이지 | get      | /mypage/<int:user_pk >/likemovies/                           | 좋아요한 영화 페이지                                |
 
 
