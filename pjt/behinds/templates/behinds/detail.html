@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block css %}
+  <link rel="stylesheet" href="{% static "css/detail.css" %}">
 {% endblock css %}
 
 {% block script %}
@@ -9,67 +10,78 @@
 {% endblock script %}
 
 {% block content %}
-  <h1>디테일 페이지</h1>
-  
-  <p>제목 : {{ behind.title }}</p>
-  <p>내용 : {{ behind.content }}</p>
-  <p>작성자 : {{ behind.user.username }} 감독</p>
-  <p>작성일자 : {{ behind.updated_at | date:"Y.m.d H:i:s" }}</p>
-  <hr>
-  <form action="{% url 'behinds:update' behind.pk %}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="수정">
-  </form>
-  <form action="{% url 'behinds:delete' behind.pk %}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="삭제">
-  </form>
-  <hr>
-
-  <form action="{% url 'behinds:comment_create' behind.pk %}"  method="POST">
-    {% csrf_token %}
-    <label for="{{ form.content.id_for_label }}">댓글:</label>
-    {{ form.content }}
-    {{ form.content.errors }}
-    <input type="submit" value="작성">
-  </form>
-
-  <div>
-    {% for comment in comments %}
-    <div>
-      <span id="comment-{{ comment.pk }}" >{{ comment.content }}</span>
-      {% if comment.user_comment == user %}
-        <form
-          class="update-form update-form{{ comment.pk }}"
-          data-comment-id="{{ comment.pk }}"
-          data-comment-content="{{ comment.content }}"
-          style="display:block;"
-        >
-          <input type="submit" value="수정">
+  <a href="{% url 'behinds:index' %}"><img src="{% static "images/back.png" %}" alt="" class="back"></a>
+  <div class="detail">
+    <div class="detail-box">
+      <div class="btn">
+        <form action="{% url 'behinds:update' behind.pk %}" method="POST">
+          {% csrf_token %}
+          <button type="subimt" class="margin-btn"><img src="{% static "images/pencil.png" %}" alt="" class="img"></button>
         </form>
-        <form
-          class="udpate-form-axios update-form-axios{{ comment.pk }}"
-          data-comment-id="{{ comment.pk }}"
-          data-comment-content="{{ comment.content }}"
-          data-behind-id="{{ behind.pk }}"
-          style="display:none;"
-        >
-          <input type="submit" value="수정2">
-          <button>취소</button>
+        <form action="{% url 'behinds:delete' behind.pk %}" method="POST">
+          {% csrf_token %}
+          <button type="submit"><img src="{% static "images/delete.png" %}" alt="" class="img"></button>
         </form>
-        <form action="{% url 'behinds:comment_delete' behind.pk comment.pk %}">
-          <input type="submit" value="삭제">
-        </form>
-        <div id="edit-div{{ comment.pk }}" style="display:none;">
-          {% comment %} <textarea id="edit-area{{ comment.pk }}" cols="30" rows="10"></textarea> {% endcomment %}
-          <input type="text" id="edit-area{{ comment.pk }}">
-        </div>
-        {% endif %}
-        <hr>
       </div>
-    {% endfor %}
+      <h1>{{ behind.title }}</h1>
+      <div class="info">
+        <p>작성자 : {{ behind.user.username }} 감독</p>
+        <p>작성일자 : {{ behind.updated_at | date:"Y.m.d H:i:s" }}</p>
+      </div>
+      <hr>
+      <h2>{{ behind.content }}</h2>
+    </div>
+    
+
+
+    <div>
+      <form action="{% url 'behinds:comment_create' behind.pk %}"  method="POST" class="form">
+        {% csrf_token %}
+        {{ form.content }}
+        {{ form.content.errors }}
+        <button type="submit" class="comment-btn">등록</button>
+      </form>
+
+      <div class="comments">
+        {% for comment in comments %}
+          <div class="comment-box">
+            {% if comment.user_comment == user %}
+              <div class="btn">
+                <form
+                  class="update-form update-form{{ comment.pk }}"
+                  data-comment-id="{{ comment.pk }}"
+                  data-comment-content="{{ comment.content }}"
+                  style="display:block;"
+                >
+                  <button type="submit" class="update-btn">수정</button>
+                </form>
+                <form
+                  class="udpate-form-axios update-form-axios{{ comment.pk }}"
+                  data-comment-id="{{ comment.pk }}"
+                  data-comment-content="{{ comment.content }}"
+                  data-behind-id="{{ behind.pk }}"
+                  style="display:none;"
+                >
+                  <button type="submit" class="update-btn">수정2</button>
+                  <button
+                    class="update-btn edit-cancel edit-cancel{{ comment.pk }}"
+                    data-comment-id="{{ comment.pk }}"
+                    data-comment-content="{{ comment.content }}"
+                  >취소</button>
+                </form>
+                <form action="{% url 'behinds:comment_delete' behind.pk comment.pk %}">
+                  <button type="submit" class="update-btn">삭제</button>
+                </form>
+              </div>
+              <div id="edit-div{{ comment.pk }}" style="display:none;">
+                {% comment %} <textarea id="edit-area{{ comment.pk }}" cols="30" rows="10"></textarea> {% endcomment %}
+                <input type="text" id="edit-area{{ comment.pk }}">
+              </div>
+            {% endif %}
+            <span id="comment-{{ comment.pk }}" >{{ comment.content }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
-
-  <a href="{% url 'behinds:index' %}">[back]</a>
-
 {% endblock content %}

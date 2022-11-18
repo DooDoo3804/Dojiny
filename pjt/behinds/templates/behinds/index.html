@@ -34,7 +34,7 @@
               </div>
               <form id="follow-form" data-user-id="{{ behind.user.pk }}">
                 {% csrf_token %}
-                {% if user in behind.user.followings %}
+                {% if user in behind.user.followers.all %}
                   <button type="submit" class="follow" id="like-button-{{ behind.user.pk }}">언팔로우</button>
                 {% else %}
                   <button type="submit" class="follow" id="like-button-{{ behind.user.pk }}">팔로우</button>
@@ -43,11 +43,19 @@
             </div>
             <h2>제목 : {{ behind.title }}</h2>    
             <p>내용 : {{ behind.content }}</p>
-            <div class="like">
-              <a href=""><img src="{% static "images/love.png" %}" alt="" class="like-img"></a>
-              <a href=""><img src="{% static "images/heart.png" %}" alt="" class="like-img"></a> 
+
+            <div class="like" data-behind-id="{{ behind.pk }}">
+              {% if user in behind.like_user.all %}
+                <img src="{% static "images/heart.png" %}" alt="" class="like-img like-img-button like-img-button-{{ behind.pk }}">
+              {% else  %}
+                <img src="{% static "images/love.png" %}" alt="" class="like-img like-img-button like-img-button-{{ behind.pk }}">
+              {% endif %}
+
+              {% comment %} likes count {% endcomment %}
               <p>12</p>
+              {% comment %} likes count {% endcomment %}
             </div>
+
           </div>
         {% endfor %}
       </div>

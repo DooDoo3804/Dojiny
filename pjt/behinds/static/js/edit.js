@@ -5,15 +5,36 @@ const updateBtns = document.querySelectorAll(`.update-form`)
 updateBtns.forEach(updateBtn => {
   updateBtn.addEventListener('submit', function (event) {
     event.preventDefault()
-    const commentContent = event.target.dataset.commentContent
+    // const commentContent = event.target.dataset.commentContent
     const commentId = event.target.dataset.commentId
+    const commentContent = document.querySelector(`#comment-${commentId}`).innerText
     const targetTextDiv = document.querySelector(`#edit-div${commentId}`)
     const targetTextArea = document.querySelector(`#edit-area${commentId}`)
     const updateBtnAxios = document.querySelector(`.update-form-axios${commentId}`)
-    targetTextDiv.setAttribute('style','display:block;')
     targetTextArea.value = commentContent
+    targetTextDiv.setAttribute('style','display:block;')
     updateBtn.setAttribute('style','display:none;')
     updateBtnAxios.setAttribute('style','display:block;')
+    console.log(commentContent)
+  })
+})
+
+const cancelBtns = document.querySelectorAll('.edit-cancel')
+cancelBtns.forEach(cancelBtn => {
+  cancelBtn.addEventListener('click', function(event) {
+    event.preventDefault()
+    const commentId = event.target.dataset.commentId
+    // const commentContent = event.target.dataset.commentContent
+    const commentContent = document.querySelector(`#comment-${commentId}`).innerText
+    const targetTextDiv = document.querySelector(`#edit-div${commentId}`)
+    const updateBtnAxios = document.querySelector(`.update-form-axios${commentId}`)
+    const updateBtn = document.querySelector(`.update-form${commentId}`)
+    const targetTextArea = document.querySelector(`#edit-area${commentId}`)
+    targetTextArea.value = commentContent
+    targetTextDiv.setAttribute('style','display:none;')
+    updateBtnAxios.setAttribute('style','display:none;')
+    updateBtn.setAttribute('style','display:block;')
+    
   })
 })
 
@@ -25,6 +46,10 @@ updateBtnAxioses.forEach(updateBtnAxios => {
     const commentId = event.target.dataset.commentId
     const targetTextArea = document.querySelector(`#edit-area${commentId}`)
     const updateBtn = document.querySelector(`.update-form${commentId}`)
+    if (targetTextArea.value === "") {
+      return alert('내용을 입력해 주세요')
+    }
+
     var content_data = {
       'behindId': behindId,
       'content': targetTextArea.value,
@@ -37,11 +62,11 @@ updateBtnAxioses.forEach(updateBtnAxios => {
       headers: {'X-CSRFToken': csrftoken},
       data: JSON.stringify(content_data),
     })
-    .then(response => {댓글
+    .then(response => {
       // const commentContent = event.target.dataset.commentContent
       const targetTextDiv = document.querySelector(`#edit-div${commentId}`)
       const targetTextArea = document.querySelector(`#edit-area${commentId}`)
-      targetTextArea.value = ''
+      targetTextArea.innerText = ''
       const updateBtnAxios = document.querySelector(`.update-form-axios${commentId}`)
       targetTextDiv.setAttribute('style','display:none;')
       updateBtn.setAttribute('style','display:block;')
@@ -49,6 +74,7 @@ updateBtnAxioses.forEach(updateBtnAxios => {
 
       const data = response.data
       const commentTag = document.querySelector(`#comment-${ commentId }`)
+      targetTextArea.innerText = data.editedContent
       commentTag.innerText = data.editedContent
 
     })

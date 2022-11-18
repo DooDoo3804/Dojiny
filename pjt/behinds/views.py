@@ -120,41 +120,23 @@ def comment_update(request, behind_pk, comment_pk):
         if request.user == comment.user_comment:
             content = jsonObject.get('content')
             csrfmiddlewaretoken = jsonObject.get('csrftoken')
-        comment_values = {
-            'content': content,
-            'csrfmiddlewaretoken': csrfmiddlewaretoken
-        }
-        form = CommentForm(comment_values, instance=comment)
-        if form.is_valid():
-            editComment = form.save(commit=False)
-            editComment.behind = behind
-            editComment.user_comment = request.user
-            editComment.save()
-            context = {
-                'editedContent': editComment.content
+            comment_values = {
+                'content': content,
+                'csrfmiddlewaretoken': csrfmiddlewaretoken
             }
-            return JsonResponse(context)
+            form = CommentForm(comment_values, instance=comment)
+            if form.is_valid():
+                editComment = form.save(commit=False)
+                editComment.behind = behind
+                editComment.user_comment = request.user
+                editComment.save()
+                context = {
+                    'editedContent': editComment.content
+                }
+                return JsonResponse(context)
         return redirect('behinds:detail', behind_pk)
     else : 
         return redirect('behinds:detail', behind_pk)    
-    
-
-    # comment = get_object_or_404(Comment, pk=comment_pk)    
-    # if request.user == comment.user_comment:
-    #     if request.method == "POST":
-    #         form = CommentForm(request.POST, instance=comment)
-    #         if form.is_valid():
-    #             form.save()
-    #             return redirect('behinds:detail', behind_pk)
-    #     else:
-    #         form = CommentForm(instance=comment)
-    # else:
-    #     return redirect('behinds:detail', behind_pk)
-    # context = {
-    #     'comment': comment,
-    #     'form': form
-    # }
-    # return render(request, 'behinds/detail.html', context)
 
 # comment 삭제
 def comment_delete(request, behind_pk, comment_pk):
@@ -164,3 +146,21 @@ def comment_delete(request, behind_pk, comment_pk):
         return redirect('behinds:detail', behind_pk)
     else:
         return redirect('behinds:detail', behind_pk)
+
+# likes
+def likes(request, behinds_pk):
+    behind = Behind.objects.get(behids_pk)
+    if request.user.is_authenticated:
+        if request.user != behind.user :
+            if behind.like_user.filter(pk=request.user.pk).exists():
+                behind.like_user.remove(request.user)
+                isLiked = False
+            else:
+                behind.like_user.add(request.user)
+                isLikes = True
+            context = {
+                'isLiked': isLiked,
+                'like_user_count': behind.like_user.count(),
+            }
+            return JsonResponse(context)
+    return redirect('accounts:login')
