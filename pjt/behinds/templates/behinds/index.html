@@ -42,7 +42,7 @@
                 {% endif %}
               </form>
             </div>
-            <h2>제목 : {{ behind.title }}</h2>    
+            <a href="{% url 'behinds:detail' behind.pk %} " ><h2>제목 : {{ behind.title }}</h2></a>    
             <p>내용 : {{ behind.content }}</p>
 
             <div class="like" data-behind-id="{{ behind.pk }}">
@@ -66,6 +66,6 @@
         {% endfor %}
       </div>
     </div>
-    <a href="{% url 'behinds:create' %}"><img src="{% static "images/create.png" %}" alt="" class="img"></a>
+    <a href="{% url 'behinds:create' %}" class="create-page"><img src="{% static "images/create.png" %}" alt="" class="img"></a>
   </div>
 {% endblock content %}
