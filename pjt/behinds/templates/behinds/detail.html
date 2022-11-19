@@ -80,7 +80,7 @@
             {% endif %}
             {% comment %} 댓글 나오는 부분 {% endcomment %}
             <div class="comment-scroll">
-              <span id="comment-{{ comment.pk }}">{{ comment.content }}</span>
+              <span style="word-wrap: break-word;" id="comment-{{ comment.pk }}">{{ comment.content }}</span>
             </div>
           </div>
         {% endfor %}
