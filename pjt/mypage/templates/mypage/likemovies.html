@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block css %}
+
+{% endblock css %}
+
+{% block script %}
+  {% comment %} 별이랑 별버튼 css {% endcomment %}
+  <style>
+    .checked {
+      color: orange;
+    }
+    .my-btn {
+      background-color: inherit !important;
+      border : 0 !important;
+    }
+  </style>
+{% endblock script %}
+
+
+{% block content %}
+  <h1>Like Movies</h1>
+  <hr>
+  {% comment %} 별점 5점인 영화 {% endcomment %}
+  {% if movies5star %}
+    <button type="submit" class="fa fa-star my-btn checked" id="first"></button>
+    <button type="submit" class="fa fa-star my-btn checked" id="second"></button>
+    <button type="submit" class="fa fa-star my-btn checked" id="third"></button>
+    <button type="submit" class="fa fa-star my-btn checked" id="fourth"></button>
+    <button type="submit" class="fa fa-star my-btn checked" id="fifth"></button>
+    {% for movie5star in movies5star %}
+    <img src="https://image.tmdb.org/t/p/w500{{ movie5star.like_movies.poster_path }}" alt="movie img">
+      <p>{{ movie5star.like_movies.title }}</p>
+    {% endfor %}
+    <hr>
+  {% endif %}
+  {% comment %} 별점 4점인 영화 {% endcomment %}
+  {% if movies4star %}
+    <button type="submit" class="fa fa-star my-btn checked" id="first"></button>
+    <button type="submit" class="fa fa-star my-btn checked" id="second"></button>
+    <button type="submit" class="fa fa-star my-btn checked" id="third"></button>
+    <button type="submit" class="fa fa-star my-btn checked" id="fourth"></button>
+    <button type="submit" class="fa fa-star my-btn" id="fifth"></button>
+    {% for movie4star in movies4star %}
+    <img src="https://image.tmdb.org/t/p/w500{{ movie4star.like_movies.poster_path }}" alt="movie img">
+      <p>{{ movie4star.like_movies.title }}</p>
+    {% endfor %}
+    <hr>
+  {% endif %}
+  {% comment %} 별점 3점인 영화 {% endcomment %}
+  {% if movies3star %}
+    <button type="submit" class="fa fa-star my-btn checked" id="first"></button>
+    <button type="submit" class="fa fa-star my-btn checked" id="second"></button>
+    <button type="submit" class="fa fa-star my-btn checked" id="third"></button>
+    <button type="submit" class="fa fa-star my-btn " id="fourth"></button>
+    <button type="submit" class="fa fa-star my-btn " id="fifth"></button>
+    {% for movie3star in movies3star %}
+    <img src="https://image.tmdb.org/t/p/w500{{ movie3star.like_movies.poster_path }}" alt="movie img">
+      <p>{{ movie3star.like_movies.title }}</p>
+    {% endfor %}
+    <hr>
+  {% endif %}
+  {% comment %} 별점 2점인 영화 {% endcomment %}
+  {% if movies2star %}
+    <button type="submit" class="fa fa-star my-btn checked" id="first"></button>
+    <button type="submit" class="fa fa-star my-btn checked" id="second"></button>
+    <button type="submit" class="fa fa-star my-btn " id="third"></button>
+    <button type="submit" class="fa fa-star my-btn " id="fourth"></button>
+    <button type="submit" class="fa fa-star my-btn " id="fifth"></button>
+    {% for movie2star in movies2star %}
+    <img src="https://image.tmdb.org/t/p/w500{{ movie2star.like_movies.poster_path }}" alt="movie img">
+      <p>{{ movie2star.like_movies.title }}</p>
+    {% endfor %}
+    <hr>
+  {% endif %}
+  {% comment %} 별점 1점인 영화 {% endcomment %}
+  {% if movies1star %}
+    <button type="submit" class="fa fa-star my-btn checked" id="first"></button>
+    <button type="submit" class="fa fa-star my-btn " id="second"></button>
+    <button type="submit" class="fa fa-star my-btn " id="third"></button>
+    <button type="submit" class="fa fa-star my-btn " id="fourth"></button>
+    <button type="submit" class="fa fa-star my-btn " id="fifth"></button>
+    {% for movie1star in movies1star %}
+    <img src="https://image.tmdb.org/t/p/w500{{ movie1star.like_movies.poster_path }}" alt="movie img">
+      <p>{{ movie1star.like_movies.title }}</p>
+    {% endfor %}
+    <hr>
+  {% endif %}
+  {% comment %} 유저 프로필로 돌아가기 {% endcomment %}
+  <a href="{% url 'mypage:index' person.pk %}">[back]</a>
+
+{% endblock content %}

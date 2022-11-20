@@ -64,4 +64,5 @@ detail페이지 에서 영화 모든 정보 출력 가능
 
 ### 2022-11-19
 
-- star rating
+- movie/detail 페이지에 star rating
+- profile에서 likemovies 페이지에서 별점 별로 movie 출력
