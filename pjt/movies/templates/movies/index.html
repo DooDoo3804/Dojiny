@@ -6,12 +6,14 @@
 {% endblock css %}
 
 {% block content %}
+  <div class="nav">전체 영화</div>
+  <hr>
   <div class="box">
-    <h1>전체 영화</h1>
     <div class="movie-list">
       {% for movie in movies %}
         <a href="{% url 'movies:detail' movie.pk %}">
-          <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="movie img">
+          <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="movie img" class="movie-img">
+          <div class="info">{{ movie.title }}</div>
         </a>
       {% endfor %}
     </div>
