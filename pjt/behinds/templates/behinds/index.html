@@ -9,6 +9,7 @@
   <script type="text/javascript" src="{% static "js/search.js" %}"></script>
   <script type="text/javascript" src="{% static "js/follow.js" %}"></script>
   <script type="text/javascript" src="{% static "js/like.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/sorted.js" %}"></script>
   <style>
     .not-visible {
       display: none;
@@ -50,9 +51,54 @@
 
     </div>
 
-    <div class="middle-box">
+    {% comment %} 최신순 {% endcomment %}
+    <div class="middle-box" id="recent-form">
       <div class="form-box" id="form-box">
-        {% for behind in behinds %}
+        {% for behind in recentBehinds %}
+          <div class="form-list" id="form-list">
+            <div class="profile">
+              <div class="profile-user">
+                <img src="{% static "images/user.png" %}" alt="" class="user">
+                <p id="director">{{ behind.user.username }} 감독</p>
+              </div>
+              <form id="follow-form" data-user-id="{{ behind.user.pk }}">
+                {% csrf_token %}
+                {% if user in behind.user.followers.all %}
+                  <button type="submit" class="follow" id="like-button-{{ behind.user.pk }}">언팔로우</button>
+                {% else %}
+                  <button type="submit" class="follow" id="like-button-{{ behind.user.pk }}">팔로우</button>
+                {% endif %}
+              </form>
+            </div>
+            <a href="{% url 'behinds:detail' behind.pk %} " ><h2>제목 : {{ behind.title }}</h2></a>    
+            <p>내용 : {{ behind.content }}</p>
+
+            <div class="like" data-behind-id="{{ behind.pk }}">
+              {% if user in behind.like_user.all %}
+                <img
+                  src="{% static "images/heart.png" %}"
+                  class="like-img like-img-button like-img-button-{{ behind.pk }}"
+                  data-behind-id="{{ behind.pk }}"
+                >
+              {% else  %}
+                <img
+                  src="{% static "images/love.png" %}"
+                  class="like-img like-img-button like-img-button-{{ behind.pk }}"
+                  data-behind-id="{{ behind.pk }}"
+                >
+              {% endif %}
+              <p id="like-count-{{ behind.pk }}">{{ behind.like_user.all|length }}</p>
+            </div>
+
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% comment %} 인기순 {% endcomment %}
+    <div class="middle-box not-visible" id="popular-form">
+      <div class="form-box" id="form-box">
+        {% for behind in popularBehinds %}
           <div class="form-list" id="form-list">
             <div class="profile">
               <div class="profile-user">
