@@ -37,6 +37,7 @@
     data-movie-id="{{ movie.pk }}"
     data-user-id="{{ user.pk }}"
     data-user-vote="{{ uservote }}"
+    style="cursor: pointer;"
   >
   {% csrf_token %}
     <button type="submit" class="fa fa-star my-btn" id="first"></button>
@@ -50,6 +51,4 @@
   <p>줄거리 : {{ movie.overview }}</p>
   <a href="{% url 'movies:index' %}">[back]</a>
 </div>
-
-
 {% endblock content %}
