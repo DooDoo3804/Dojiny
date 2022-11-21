@@ -112,7 +112,7 @@ hr {
   padding-left: 25px;
   padding-right: 25px;
   padding-bottom: 50px;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 /* .comment-box::-webkit-scrollbar {
@@ -159,6 +159,7 @@ display: none;
   display: flex;
   justify-content: center;
   align-items: baseline;
+  margin-top: 20px;
 }
 
 .comment-scroll {
@@ -190,4 +191,10 @@ display: none;
 .comment-info {
   color: white;
   font-size: 25px;
+}
+
+.nickname {
+  margin-right: 3px;
+  color: black;
+  /* text-decoration: none; */
 }

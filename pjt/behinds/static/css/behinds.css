@@ -28,9 +28,14 @@ a {
 }
 
 .create-page {
+  width: fit-content;
+}
+
+.a-align {
   display: flex;
   justify-content: flex-end;
 }
+
 /* 
 .nav {
   width: 97%;
