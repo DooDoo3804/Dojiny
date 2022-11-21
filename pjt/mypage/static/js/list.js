@@ -11,6 +11,7 @@ const threeNext = document.querySelector('.star3next')
 const twoNext = document.querySelector('.star2next')
 const oneNext = document.querySelector('.star1next')
 
+const img5stars = document.querySelector('#img-list-star5')
 
 const beforeArr = [fiveBefore, fourBefore, threeBefore, twoBefore, oneBefore]
 const nextArr = [fiveNext, fourNext, threeNext, twoNext, oneNext]
@@ -24,9 +25,17 @@ var oneList = null
 nextArr.forEach(next => {
   if (next != null) {
     next.addEventListener('click', event => {
-      console.log(event.target.dataset.movieStars)
-  })
-  }})
+      // img5stars.innerHTML = ``
+      const userId =event.target.dataset.movieStars
+      console.log(userId)
+
+      // for (movieURL in moviesURL) {
+      //   img5stars.innerHTML += `
+      //     <img src="https://image.tmdb.org/t/p/w500${movieURL}" alt="movie img" class="movie-img">
+      //   `
+      // }
+    })}})
+  
 
   // 비동기로 데이터 받아오기
   
