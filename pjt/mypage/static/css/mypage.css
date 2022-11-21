@@ -32,9 +32,9 @@ body {
 
 .user-img {
   width: 25rem;
-  height: 35rem;
+  height: 30rem;
   border-radius: 10px;
-  box-shadow: 10px 10px #d9d9d9;
+  box-shadow: 10px 10px white;
   /* margin-left: 150px; */
 }
 
