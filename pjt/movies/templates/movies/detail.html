@@ -24,6 +24,36 @@
 
 
 {% block content %}
+<<<<<<< HEAD
+<h1>{{ movie.title }}</h1>
+<img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" style="width:200px; height:200px;" alt="movie img">
+<div>
+  {% for genre in genres %}{{ genre }}{% endfor %}
+  <p>{{ movie.runtime }} 분</p>
+  <p>평점 {{ vote_average }}</p>
+  <p>감독 : {{ director }}</p>
+  
+  <form
+    id="star-check-form"
+    method="POST"
+    data-movie-id="{{ movie.pk }}"
+    data-user-id="{{ user.pk }}"
+    data-user-vote="{{ uservote }}"
+    style="cursor: pointer;"
+  >
+  {% csrf_token %}
+    <button type="submit" class="fa fa-star my-btn" id="first"></button>
+    <button type="submit" class="fa fa-star my-btn" id="second"></button>
+    <button type="submit" class="fa fa-star my-btn" id="third"></button>
+    <button type="submit" class="fa fa-star my-btn" id="fourth"></button>
+    <button type="submit" class="fa fa-star my-btn" id="fifth"></button>
+    <span id="uservote" style="display:none;">{{ uservote }}</span> 
+  </form>
+  
+  <p>줄거리 : {{ movie.overview }}</p>
+  <a href="{% url 'movies:index' %}">[back]</a>
+</div>
+=======
   <div class="nav">{{ movie.title }}</div>
   <div class="box">
     <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="movie img" class="movie-img">
@@ -54,4 +84,5 @@
     <a href="{% url 'movies:index' %}"><img src="{% static "images/back.png" %}" alt="" class="back"></a>
   </div>
 
+>>>>>>> 39fb7bc1c5b5367601359e3c16e03d033c4bfbdd
 {% endblock content %}

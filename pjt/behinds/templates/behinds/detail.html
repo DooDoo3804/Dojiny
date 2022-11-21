@@ -25,7 +25,7 @@
       </div>
       <h1>{{ behind.title }}</h1>
       <div class="info">
-        <p>작성자 : {{ behind.user.username }} 감독</p>
+        <p>작성자 : <a href="{% url 'mypage:index' behind.user.pk %}">{{ behind.user.username }}</a> 감독</p>
         <p>작성일자 : {{ behind.updated_at | date:"Y.m.d H:i:s" }}</p>
       </div>
       <hr>
@@ -45,6 +45,9 @@
       <div class="comments">
         {% for comment in comments %}
           <div class="comment-box">
+            <a href="{% url 'mypage:index' comment.user_comment.pk %}">{{ comment.user_comment.nickname }}</a>
+            {{ comment.updated_at | date:"Y.m.d H:i:s" }}
+            
             {% if comment.user_comment == user %}
               <div class="btn">
                 <form
