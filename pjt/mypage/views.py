@@ -14,6 +14,7 @@ def likedirectors(request, user_pk):
     person = get_object_or_404(get_user_model(), pk=user_pk)
     directors = person.followings.all()
     context = {
+        'person' : person,
         'directors': directors
     }
     return render(request, 'mypage/likedirectors.html', context)
