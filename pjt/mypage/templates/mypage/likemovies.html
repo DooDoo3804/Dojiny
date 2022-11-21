@@ -38,10 +38,10 @@
           <button type="submit" class="fa fa-star my-btn checked" id="fifth"></button>
         </div>
         <div class="page-btn">
-          <img src="{% static "images/before.png" %}" alt="" class="before star5before" data-movie-stars="{{ movies5starURL }}" id="before">
-          <img src="{% static "images/next.png" %}" alt="" class="next star5next" data-movie-stars="{{ movies5starURL }}" id="next">
+          <img src="{% static "images/before.png" %}" alt="" class="before star5before" data-movie-stars="{{ movies5star | slice:"0:3" }}" id="before">
+          <img src="{% static "images/next.png" %}" alt="" class="next star5next" data-movie-stars="{{ movies5star | length }}"  id="next">
         </div>
-        <div class="img-list" id="img-list">
+        <div class="img-list" id="img-list-star5">
           {% for movie5star in movies5star %}
           <img src="https://image.tmdb.org/t/p/w500{{ movie5star.like_movies.poster_path }}" alt="movie img" class="movie-img">
           {% endfor %}
