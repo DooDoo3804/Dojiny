@@ -101,6 +101,9 @@ def update(request, user_pk) :
         form = CustomUserChangeForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             user = form.save()
+            if not request.FILES:
+                user.profile_image = 'image/user.jpg'
+                user.save()
             form2 = SetPasswordForm(user, request.POST)
             if form2.is_valid():
                 form2.save()
