@@ -23,7 +23,7 @@ loadForm.addEventListener('submit', function(event) {
     for (let i=0; i<20; i++) {
       movie = movies[i]
       movieList.innerHTML += `
-      <a href="{% url 'movies:detail' movie.pk %}">
+      <a href="{% url 'movies:detail' movie.pk %}" class="movie-a">
         <img src="https://image.tmdb.org/t/p/w500${movie.poster_url}" alt="movie img" class="movie-img">
         <div class="info">${movie.title}</div>
       </a>
