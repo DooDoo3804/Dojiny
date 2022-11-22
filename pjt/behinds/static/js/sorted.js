@@ -1,16 +1,24 @@
-const selectedTypes = document.querySelector("#types")
+const recent = document.querySelector('#recent')
+const popular = document.querySelector('#popular')
 const popularForm = document.querySelector("#popular-form")
-const cerentForm = document.querySelector("#recent-form")
+const recentForm = document.querySelector("#recent-form")
 
-selectedTypes.addEventListener('change', event => {
-  var selected = event.target.value
-  if (selected === 'popular') {
-    console.log('popular')
-    popularForm.classList.remove('not-visible')
-    cerentForm.classList.add('not-visible')
-  }
-  else {
+recent.addEventListener('click', (e) => {
+  const select = e.target.innerText
+  if (select === '최신순') {
+    recentForm.classList.remove('not-visible')
     popularForm.classList.add('not-visible')
-    cerentForm.classList.remove('not-visible')
+    popular.classList.add('deactivate')
+    recent.classList.remove('deactivate')
+  }
+})
+
+popular.addEventListener('click', (e) => {
+  const select = e.target.innerText
+  if (select === '인기순') {
+    recentForm.classList.add('not-visible')
+    popularForm.classList.remove('not-visible')
+    popular.classList.remove('deactivate')
+    recent.classList.add('deactivate')
   }
 })
