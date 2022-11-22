@@ -2,12 +2,12 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  display: fixed;
+  position: fixed;
 }
 
 .nav-hr {
   background-color: #464646;
-  height: 1px;
+  height: 3px;
   border: none;
 }
 
@@ -31,7 +31,7 @@
 
 #nav-menu {
   background-color: #212121;
-  width: 250px;
+  width: 300px;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -48,7 +48,8 @@
 
 .nav-text {
   display: flex;
-  justify-content: start;
+  justify-content: center;
+  align-items: center;
   list-style: none;
   height: 50px;
   padding: 1rem;
@@ -58,16 +59,18 @@
   text-decoration: none;
   color: aliceblue;
   font-size: 1.2rem;
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
+  height: fit-content;
 }
 
-.nav-text:hover {
+.item:hover {
   background-color: rgba(144,144,144,0.219);
   cursor: pointer;
 }
 
 .nav-menu-items {
   width: 100%;
+  padding-left: 0;
 }
 
 .nav-icon {
@@ -77,11 +80,12 @@
 
 #navbar-toggle {
   background-color: none;
-  width: 100%;
+  width: 90%;
   height: 100px;
   display: flex;
-  justify-content: start;
+  justify-content: flex-end;
   align-items: center;
+  padding-right: 10%;
 }
 
 #navbar-toggle h1 {
@@ -97,4 +101,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.modal-user {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  margin-top: 50px;
+}
+
+.logout {
+  font-size: 15px !important;
 }
