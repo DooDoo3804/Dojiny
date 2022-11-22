@@ -30,7 +30,7 @@ searchInput.addEventListener('keyup', function (event) {
       searchResult.forEach(result => {
         resultBox.innerHTML += `
           <a href="" class='link'>
-            <div style='margin-top:2px; margin-bottom:2px; color:white'>
+            <div style='margin-top:2px; margin-bottom:2px; color:black'>
               <div>
                 <p>${result.username} | ${result.title}</p>
               </div>

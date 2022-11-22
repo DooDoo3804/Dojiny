@@ -8,10 +8,13 @@
 {% block content %}
   <div class="nav">전체 영화</div>
   <hr>
+  <div class="back-page">
+    <a href="http://127.0.0.1:8000/menu/" class="back"><img src="{% static "images/back.png" %}" alt="" class="back"></a>
+  </div>
   <div class="box">
     <div class="movie-list">
       {% for movie in movies %}
-        <a href="{% url 'movies:detail' movie.pk %}">
+        <a href="{% url 'movies:detail' movie.pk %}" class="movie-a">
           <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="movie img" class="movie-img">
           <div class="info">{{ movie.title }}</div>
         </a>
