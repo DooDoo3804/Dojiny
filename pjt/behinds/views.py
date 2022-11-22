@@ -61,7 +61,6 @@ def index(request):
             'recentBehinds': recentBehinds,
             'popularBehinds': popularBehinds,
         }
-        print('none')
     return render(request, 'behinds/index.html', context)
 
 # 생성 폼과 생성 페이지

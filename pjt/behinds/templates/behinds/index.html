@@ -91,7 +91,7 @@
               </form>
             </div>
             <a href="{% url 'behinds:detail' behind.pk %} " ><h2>제목 : {{ behind.title }}</h2></a>    
-            <p>내용 : {{ behind.content }}</p>
+            <p>내용 : {{ behind.content | slice:"301" }}</p>
 
             <div class="like" data-behind-id="{{ behind.pk }}">
               {% if user in behind.like_user.all %}

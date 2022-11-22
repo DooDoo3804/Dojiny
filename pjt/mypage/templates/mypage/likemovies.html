@@ -38,8 +38,11 @@
           <button type="submit" class="fa fa-star my-btn checked" id="fifth"></button>
         </div>
         <div class="page-btn">
-          <img src="{% static "images/before.png" %}" alt="" class="before star5before" data-movie-stars="{{ movies5star | slice:"0:3" }}" id="before">
-          <img src="{% static "images/next.png" %}" alt="" class="next star5next" data-movie-stars="{{ movies5star | length }}"  id="next">
+          <form action="" id="star5-form" data-user-id="{{ user.pk }}" data-stars="5">
+            {% csrf_token %}
+            <input  TYPE="IMAGE" src="{% static "images/before.png" %}" name="Submit" value="before" class="before" id="before" align="absmiddle">
+            <input  TYPE="IMAGE" src="{% static "images/next.png" %}" name="Submit" value="next" class="next" id="next" align="absmiddle">
+          </form>
         </div>
         <div class="img-list" id="img-list-star5">
           {% for movie5star in movies5star %}
@@ -61,8 +64,11 @@
           <button type="submit" class="fa fa-star my-btn" id="fifth"></button>
         </div>
         <div class="page-btn">
-          <img src="{% static "images/before.png" %}" alt="" class="before star4before" data-movie-stars="{{ movies4starURL }}" id="before">
-          <img src="{% static "images/next.png" %}" alt="" class="next star4next" data-movie-stars="{{ movies4starURL }}" id="next">
+          <form action="" id="star4-form">
+            {% csrf_token %}
+            <input  TYPE="IMAGE" src="{% static "images/before.png" %}" name="Submit" value="before" class="before" id="before" align="absmiddle">
+            <input  TYPE="IMAGE" src="{% static "images/next.png" %}" name="Submit" value="next" class="next" id="next" align="absmiddle">
+          </form>
         </div>
         <div class="img-list">
           {% for movie4star in movies4star %}
@@ -84,8 +90,11 @@
           <button type="submit" class="fa fa-star my-btn " id="fifth"></button>
         </div>
         <div class="page-btn">
-          <img src="{% static "images/before.png" %}" alt="" class="before star3before" data-movie-stars="{{ movies3starURL }}" id="before">
-          <img src="{% static "images/next.png" %}" alt="" class="next star3next" data-movie-stars="{{ movies3starURL }}" id="next">
+          <form action="" id="star3-form">
+            {% csrf_token %}
+            <input  TYPE="IMAGE" src="{% static "images/before.png" %}" name="Submit" value="before" class="before" id="before" align="absmiddle">
+            <input  TYPE="IMAGE" src="{% static "images/next.png" %}" name="Submit" value="next" class="next" id="next" align="absmiddle">
+          </form>
         </div>
         <div class="img-list">
           {% for movie3star in movies3star %}
@@ -107,8 +116,11 @@
           <button type="submit" class="fa fa-star my-btn " id="fifth"></button>
         </div>
         <div class="page-btn">
-          <img src="{% static "images/before.png" %}" alt="" class="before star2before" data-movie-stars="{{ movies2starURL }}" id="before">
-          <img src="{% static "images/next.png" %}" alt="" class="next star2next" data-movie-stars="{{ movies2starURL }}" id="next">
+          <form action="" id="star2-form">
+            {% csrf_token %}
+            <input  TYPE="IMAGE" src="{% static "images/before.png" %}" name="Submit" value="before" class="before" id="before" align="absmiddle">
+            <input  TYPE="IMAGE" src="{% static "images/next.png" %}" name="Submit" value="next" class="next" id="next" align="absmiddle">
+          </form>
         </div>
         <div class="img-list">
           {% for movie2star in movies2star %}
@@ -130,8 +142,11 @@
           <button type="submit" class="fa fa-star my-btn " id="fifth"></button>
         </div>
         <div class="page-btn">
-          <img src="{% static "images/before.png" %}" alt="" class="before star1before" data-movie-stars="{{ movies1starURL }}" id="before">
-          <img src="{% static "images/next.png" %}" alt="" class="next star1next" data-movie-stars="{{ movies1starURL }}" id="next">
+          <form action="" id="star1-form">
+            {% csrf_token %}
+            <input  TYPE="IMAGE" src="{% static "images/before.png" %}" name="Submit" value="before" class="before" id="before" align="absmiddle">
+            <input  TYPE="IMAGE" src="{% static "images/next.png" %}" name="Submit" value="next" class="next" id="next" align="absmiddle">
+          </form>
         </div>
         <div class="img-list">
           {% for movie1star in movies1star %}
