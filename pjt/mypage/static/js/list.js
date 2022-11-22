@@ -16,75 +16,122 @@ formArr = [star5form, star4form, star3form, star2form, star1form]
 
 formArr.forEach(form => {
   if (form != null) {
+    form.addEventListener('submit', event => {
+      event.preventDefault()
+      const userId = event.target.dataset.userId
+      var stars = event.target.dataset.stars
+      var starsList = event.target.dataset.starsList
+      var starList = null
+      if (event.submitter.value === 'next'){
+        if (starsList === 'fiveList'){
+          fiveList += 1
+          starList = fiveList
+        }
+        if (starsList === 'fourList'){
+          fourList += 1
+          starList = fourList
+        }
+        if (starsList === 'threeList'){
+          threeList += 1
+          starList = threeList
+        }
+        if (starsList === 'twoList'){
+          twoList += 1
+          starList = twoList
+        }
+        if (starsList === 'oneList'){
+          oneList += 1
+          starList = oneList
+        }
+      }
+      else {
+        if (starsList === 'fiveList'){
+          if (fiveList !== 0){
+          fiveList -= 1
+          starList = fiveList
+        }else {
+          starList = 0
+        }
+      }
+        if (starsList === 'fourList'){
+          if (fourList !== 0){
+            fourList -= 1
+            starList = fourList
+          }else {
+            starList = 0
+          }
+        }
+        if (starsList === 'threeList'){
+          if (threeList !== 0){
+            starList = threeList
+          }else {
+            starList = 0
+          }
+        }
+        if (starsList === 'twoList'){
+          if (twoList !== 0){
+            starList = twoList
+          }else {
+            starList = 0
+          }
+        }
+        if (starsList === 'oneList'){
+          if (oneList !== 0){
+            starList = oneList
+          }else {
+            starList = 0
+          }
+        }
+      }
+
+      content_data = {
+        'stars': stars,
+        'starList': starList,
+        'starsList': starsList
+      }
+      console.log(content_data)
+      axios({
+        method: 'post',
+        url: `http://127.0.0.1:8000/mypage/${userId}/likemovies/`,
+        headers: {'X-CSRFToken': csrftoken},
+        data: JSON.stringify(content_data),
+      })
+      .then((res) => {
+        const imgListStar = document.querySelector(`#img-list-star${stars}`)
+        imgListStar.innerHTML = ``
+        resdatas = res.data
+        if (res.data[0].status === 'over') {
+          console.log('over')
+          const returnstarlist = res.data[0].returnstarlist
+          if (returnstarlist === 'fiveList'){
+            fiveList -= 1
+          }
+          if (returnstarlist === 'fourList'){
+            fourList -= 1
+          }
+          if (returnstarlist === 'threeList'){
+            threeList -= 1
+          }
+          if (returnstarlist === 'twoList'){
+            twoList -= 1
+          }
+          if (returnstarlist === 'oneList'){
+            oneList -= 1
+          }
+        }
+
+        resdatas.forEach((data) => {
+          imgListStar.innerHTML += `
+          <img src="https://image.tmdb.org/t/p/w500${data.poster_url}" alt="movie img" class="movie-img">
+          `
+        })
+
+      })
+      .catch((res) => {
+        console.log(res)
+      })
+    })
 
   }
 });
-
-  console.log('not null')
-  star5form.addEventListener('subimt', event => {
-    event.preventDefault()
-    const userId = event.target.dataset.userId
-    var stars = event.target.dataset.stars
-    console.log(event.submitter.value)
-    if (event.submitter.value === 'next'){
-      fiveList += 1
-    }
-    else {
-      if (fiveList !== 0) {
-        fiveList -= 1
-      }
-    }
-
-    content_data = {
-      'stars': stars,
-      'fiveList': fiveList,
-    }
-
-    axios({
-      method: 'post',
-      url: `http://127.0.0.1:8000/mypage/${userId}/likemovies/`,
-      headers: {'X-CSRFToken': csrftoken},
-      data: JSON.stringify(content_data),
-    })
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((res) => {
-      console.log(res)
-    })
-  })
-
-// nextArr.forEach(next => {
-//   if (next != null) {
-//     next.addEventListener('click', event => {
-//       // img5stars.innerHTML = ``
-//       const userId =event.target.dataset.movieStars
-//       event.preventDefault()
-//       pageCount += 1
-//       var content_data = {
-//         'pageCount': pageCount,
-//       }
-//       axios({
-//         method: 'post',
-//         url: `http://127.0.0.1:8000/mepage/${userId}/likemovies/`,
-//         headers: {'X-CSRFToken': csrftoken},
-//         data: JSON.stringify(content_data),
-//       })
-//       .then((res) => {
-//         console.log(res)  
-//         movies = res.data
-//         console.log(typeof(movies))
-//         for (let i=0; i<20; i++) {
-//           movie = movies[i]
-//           movieList.innerHTML += `
-//           <a href="{% url 'movies:detail' movie.pk %}">
-//             <img src="https://image.tmdb.org/t/p/w500${movie.poster_url}" alt="movie img" class="movie-img">
-//             <div class="info">${movie.title}</div>
-//           </a>
-//           `
-//         }
-//     })})}})
-  
-
-  // 비동기로 데이터 받아오기
   

@@ -13,7 +13,6 @@ def index(request):
         jsonObject = json.loads(request.body)
         # 검색 시 
         if 'inputContent' in jsonObject.keys():
-            
             inputContent = jsonObject.get('inputContent')
             behinds = Behind.objects.all()
             users = get_user_model().objects. all()
@@ -38,7 +37,13 @@ def index(request):
                         'title': behind.title,
                         'username': behind.user.username,
                     }
-                    data.append(item)
+                    flag = True
+                    for d in data :
+                        if d['pk'] == behind.pk:
+                            flag = False
+                            break
+                    if flag :
+                        data.append(item)
 
             behinds_content = Behind.objects.filter(content__icontains = inputContent)
             if len(inputContent) > 0 and len(behinds_content) > 0:
@@ -48,8 +53,13 @@ def index(request):
                         'title': behind.title,
                         'username': behind.user.username,
                     }
-                    data.append(item)
-
+                    flag = True
+                    for d in data :
+                        if d['pk'] == behind.pk:
+                            flag = False
+                            break
+                    if flag :
+                        data.append(item)
             context = {
                 'searchResult': data
             }
