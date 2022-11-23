@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block css %}
-
+  <link rel="stylesheet" href="{% static "css/recommend.css" %}">
 {% endblock css %}
 
 {% block script %}
@@ -9,7 +10,8 @@
 {% endblock script %}
 
 {% block content %}
-  <h1>recommendation page</h1>
+  <div class="nav">recommendation page</div>
+  <hr>
   {% for item in items %}
     {{ item.title }}
     <img src="https://image.tmdb.org/t/p/w500{{ item.poster_path }}" alt="movie img" class="movie-img">
