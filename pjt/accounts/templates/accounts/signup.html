@@ -39,6 +39,9 @@
       <div class="submit">
         <button type="submit" class="submit-btn">SIGN UP</button>
       </div>
+      {% for message in messages %}
+        <span>{{ message }}</span>
+      {% endfor %}
     </form>
   </div>
 {% endblock content %}

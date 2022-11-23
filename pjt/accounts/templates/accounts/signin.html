@@ -17,16 +17,17 @@
       <div class='input'>
           <label for="{{ form.username.id_for_label }}">Username</label><br>
           {{ form.username }}
-          {{ form.username.errors }}
       </div>
       <div class="input margin">
           <label for="{{ form.password.id_for_label }}">Password</label><br>
           {{ form.password }}
-          {{ form.password.errors }}
       </div>
       <div class="submit">
         <input type="submit" class="submit-btn margin" value="SIGN IN">  
       </div>
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
     </form>
   </div>
 {% endblock content %}
