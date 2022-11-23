@@ -249,6 +249,7 @@ def index(request, user_pk) :
     #     movies1990s_result[name2_pk] = sim_pearson(user_movie_rankings_avg, name2_value)
     # sorted_dict1990s = sorted(movies1990s_result.items(), key = lambda item: item[1], reverse = True)
     
+    
     # 엔트로피 가중치
     # for name2_pk, name2_value in movies2010s_rating.items():
     #     movies2010s_result[name2_pk] = entropy(user_movie_rankings_avg, name2_value)
