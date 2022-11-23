@@ -10,5 +10,8 @@
 
 {% block content %}
   <h1>recommendation page</h1>
-
+  {% for item in items %}
+    {{ item.title }}
+    <img src="https://image.tmdb.org/t/p/w500{{ item.poster_path }}" alt="movie img" class="movie-img">
+  {% endfor %}
 {% endblock content %}
