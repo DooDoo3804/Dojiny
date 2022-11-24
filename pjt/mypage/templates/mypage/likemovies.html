@@ -46,7 +46,7 @@
         </div>
         <div class="img-list" id="img-list-star5">
           {% for movie5star in movies5star %}
-          <img src="https://image.tmdb.org/t/p/w500{{ movie5star.like_movies.poster_path }}" alt="movie img" class="movie-img">
+            <a href="{% url 'movies:detail' movie5star.like_movies.pk %}"><img src="https://image.tmdb.org/t/p/w500{{ movie5star.like_movies.poster_path }}" alt="movie img" class="movie-img"></a>
           {% endfor %}
         </div>
       </div>
@@ -72,7 +72,7 @@
         </div>
         <div class="img-list" id="img-list-star4">
           {% for movie4star in movies4star %}
-            <img src="https://image.tmdb.org/t/p/w500{{ movie4star.like_movies.poster_path }}" alt="movie img" class="movie-img">
+            <a href="{% url 'movies:detail' movie4star.like_movies.pk %}"><img src="https://image.tmdb.org/t/p/w500{{ movie4star.like_movies.poster_path }}" alt="movie img" class="movie-img"></a>
           {% endfor %}
         </div>
       </div>
@@ -98,7 +98,7 @@
         </div>
         <div class="img-list" id="img-list-star3">
           {% for movie3star in movies3star %}
-            <img src="https://image.tmdb.org/t/p/w500{{ movie3star.like_movies.poster_path }}" alt="movie img" class="movie-img">
+            <a href="{% url 'movies:detail' movie3star.like_movies.pk %}"><img src="https://image.tmdb.org/t/p/w500{{ movie3star.like_movies.poster_path }}" alt="movie img" class="movie-img"></a>
           {% endfor %}
         </div>
       </div>
@@ -124,7 +124,7 @@
         </div>
         <div class="img-list" id="img-list-star2">
           {% for movie2star in movies2star %}
-            <img src="https://image.tmdb.org/t/p/w500{{ movie2star.like_movies.poster_path }}" alt="movie img" class="movie-img">
+            <a href="{% url 'movies:detail' movie2star.like_movies.pk %}"><img src="https://image.tmdb.org/t/p/w500{{ movie2star.like_movies.poster_path }}" alt="movie img" class="movie-img"></a>
           {% endfor %}
         </div>
       </div>
@@ -150,7 +150,7 @@
         </div>
         <div class="img-list" id="img-list-star1">
           {% for movie1star in movies1star %}
-            <img src="https://image.tmdb.org/t/p/w500{{ movie1star.like_movies.poster_path }}" alt="movie img" class="movie-img">
+            <a href="{% url 'movies:detail' movie1star.like_movies.pk %}"><img src="https://image.tmdb.org/t/p/w500{{ movie1star.like_movies.poster_path }}" alt="movie img" class="movie-img"></a>
           {% endfor %}
         </div>
       </div>

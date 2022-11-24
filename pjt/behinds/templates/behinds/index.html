@@ -67,11 +67,11 @@
             </div>
 
             <div class="in-content-box">
-              <a href="{% url 'behinds:detail' behind.pk %} "><h2>제목 : {{ behind.title }}</h2></a>    
+              <a href="{% url 'behinds:detail' behind.pk %} "><h2>{{ behind.title }}</h2></a>    
               {% if behind.content|length > 300 %}
-                <p>내용 : {{ behind.content | slice:"301" }}...</p>
+                <p>{{ behind.content | slice:"301" }}...</p>
               {% else %}
-                <p>내용 : {{ behind.content | slice:"301" }}</p>
+                <p>{{ behind.content | slice:"301" }}</p>
               {% endif %}
   
               <div class="like" data-behind-id="{{ behind.pk }}">
@@ -104,7 +104,9 @@
           <div class="form-list" id="form-list">
             <div class="profile">
               <div class="profile-user">
-                <img src="{% static "images/user.png" %}" alt="" class="user">
+                {% if behind.user.profile_image %}
+                  <img src="{{ behind.user.profile_image.url }}" alt="" class="user">
+                {% endif %}
                 <p id="director">{{ behind.user.username }} 감독</p>
               </div>
               <form id="follow-form" data-user-id="{{ behind.user.pk }}">
@@ -118,8 +120,12 @@
             </div>
 
             <div class="in-content-box">
-              <a href="{% url 'behinds:detail' behind.pk %} " ><h2>제목 : {{ behind.title }}</h2></a>    
-              <p>내용 : {{ behind.content | slice:"301" }}</p>
+              <a href="{% url 'behinds:detail' behind.pk %} " ><h2>{{ behind.title }}</h2></a>
+              {% if behind.content|length > 300 %}
+                <p>{{ behind.content | slice:"301" }}...</p>
+              {% else %}
+                <p>{{ behind.content | slice:"301" }}</p>
+              {% endif %}
   
               <div class="like" data-behind-id="{{ behind.pk }}">
                 {% if user in behind.like_user.all %}

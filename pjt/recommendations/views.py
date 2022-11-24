@@ -286,23 +286,25 @@ def index(request, user_pk) :
             total_rating_2010 += int(value)
     result_movie_pk_sim = []
 
-    rating_1990 = round(total_rating_1990/total_rating*10)
-    rating_2000 = round(total_rating_2000/total_rating*10)
-    rating_2010 = round(total_rating_2010/total_rating*10)
+    rating_1990 = math.ceil(total_rating_1990/total_rating*10)
+    rating_2000 = math.ceil(total_rating_2000/total_rating*10)
+    rating_2010 = math.ceil(total_rating_2010/total_rating*10)
     
-    for i in range(0, rating_1990):
-        result_movie_pk_sim.append(sorted_dict1990s[i][0])
-    for i in range(0, rating_2000):
-        result_movie_pk_sim.append(sorted_dict2000s[i][0])
-    for i in range(0, rating_2010):
-        result_movie_pk_sim.append(sorted_dict2010s[i][0])
+    for i in range(0, rating_2010*3):
+        result_movie_pk_sim.append([sorted_dict2010s[i][0], Movie.objects.get(pk=sorted_dict2010s[i][0]).vote_average])
+    for i in range(0, rating_2000*3):
+        result_movie_pk_sim.append([sorted_dict2000s[i][0], Movie.objects.get(pk=sorted_dict2000s[i][0]).vote_average])
+    for i in range(0, rating_1990*3):
+        result_movie_pk_sim.append([sorted_dict1990s[i][0], Movie.objects.get(pk=sorted_dict1990s[i][0]).vote_average])
 
+    result_movie_pk_sim.sort(key=lambda x:x[1], reverse=True)
     result_movies = []
-    for i in result_movie_pk_sim:
+
+    for i in result_movie_pk_sim[0:10]:
         item = {
-            'title' : Movie.objects.get(pk=i).title,
-            'poster_path' : Movie.objects.get(pk=i).poster_path,
-            'pk' : Movie.objects.get(pk=i).pk,
+            'title' : Movie.objects.get(pk=i[0]).title,
+            'poster_path' : Movie.objects.get(pk=i[0]).poster_path,
+            'pk' : Movie.objects.get(pk=i[0]).pk,
         }
         result_movies.append(item)
     
