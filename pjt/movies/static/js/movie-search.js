@@ -39,11 +39,7 @@ searchInput.addEventListener('keyup', function (event) {
       searchResult.forEach(result => {
         resultBox.innerHTML += `
           <a href='http://127.0.0.1:8000/movies/${result.pk}/detail/' class='link'>
-            <div style='margin-top:2px; margin-bottom:2px; color:black'>
-              <div>
-                <img src='https://image.tmdb.org/t/p/w500${result.url}' alt="movie img" class="movie-img">
-              </div>
-            </div>
+            <img src='https://image.tmdb.org/t/p/w500${result.url}' alt="movie img"">
           </a>
         `
       })

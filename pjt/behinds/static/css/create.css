@@ -10,7 +10,13 @@ body {
   font-family: behind;
 }
 
-img {
+.img {
+  width: 30px;
+  height: 30px;
+  margin-left: 40px;
+}
+
+.back {
   width: 30px;
   height: 30px;
   margin-left: 40px;
@@ -58,9 +64,10 @@ form {
 }
 
 #title {
-  width: 97%;
+  width: 95%;
   height: 80%;
   padding: 10px;
+  padding-left: 20px !important;
   border-radius: 30px;
   font-family: behind;
   font-size: 17px;
@@ -76,9 +83,9 @@ form {
 }
 
 #content {
-  width: 94%;
-  height: 90%;
-  padding: 20px;
+  width: 92%;
+  height: 84%;
+  padding: 25px;
   border-radius: 30px;
   font-family: behind;
   font-size: 17px;
