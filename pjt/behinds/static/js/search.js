@@ -2,6 +2,11 @@ const searchInput = document.querySelector('#search-input')
 const csrftokenS = document.querySelector('[name=csrfmiddlewaretoken]').value
 const resultBox = document.querySelector('#result-Box')
 
+searchInput.addEventListener('keydown', function (event) {
+  if (event.code === "Enter") {
+    event.preventDefault()
+  }
+})
 searchInput.addEventListener('keyup', function (event) {
   // const allBehinds = event.target.dataset.behindContent
 

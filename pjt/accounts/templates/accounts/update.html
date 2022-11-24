@@ -10,9 +10,14 @@
 {% endblock script %}
 
 {% block content %}
-  {% for message in messages %}
-    <p>{{ message }}</p>
-  {% endfor %}
+  <div class="update-alert" id="update-alert">
+    <div class="update-alert-modal">
+      {% for message in messages %}
+        <p class="alert-message">{{ message }}</p>
+      {% endfor %}
+    </div>
+  </div>
+
   <div class="nav">회원 정보 수정</div>
   <hr>
   <div class="box">
@@ -64,4 +69,6 @@
   <div id="back-page">
     <a href="{% url 'mypage:index' user.pk %}"><img src="{% static "images/back.png" %}" alt="" class="back"></a>
   </div>
+
+  <script type="text/javascript" src="{% static "js/update-alert.js" %}"></script>
 {% endblock content %}

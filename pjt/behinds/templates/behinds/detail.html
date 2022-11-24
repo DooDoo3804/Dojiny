@@ -15,8 +15,7 @@
   <div class="detail">
     <div class="detail-box">
       <div class="btn">
-        <form action="{% url 'behinds:update' behind.pk %}" method="POST">
-          {% csrf_token %}
+        <form action="{% url 'behinds:update' behind.pk %}" method="GET">
           <button type="subimt" class="margin-btn"><img src="{% static "images/pencil.png" %}" alt="" class="img"></button>
         </form>
         <form action="{% url 'behinds:delete' behind.pk %}" method="POST">

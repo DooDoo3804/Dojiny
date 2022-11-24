@@ -89,12 +89,9 @@ def entropy(name1, name2):
     for genres in name1:
         if genres in name2:
             sum_entropy -= math.log(float(name2[genres]))
-            print(name2[genres])
     return sum_entropy/name2_lengh
 
 def index(request, user_pk) :
-    print(math.log(10))
-
     # movies = Movie.objects.all()
     movies1990s = Movie.objects.filter(release_date__range=(0,1999))
     movies2000s = Movie.objects.filter(release_date__range=(2000,2010))
