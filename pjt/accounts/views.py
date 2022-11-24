@@ -131,7 +131,7 @@ def update(request, user_pk) :
 
             passwordForm = SetPasswordForm(user)
             form = CustomUserChangeForm(instance=user)
-            auth_login(request, user)
+            auth_login(request, user) 
             context = {
                 'form': form,
                 'passwordForm': passwordForm
@@ -155,7 +155,4 @@ def update(request, user_pk) :
     }
     return render(request, 'accounts/update.html', context)
 
-def password(request) :
-    pass
-    return render(request, 'accounts/password.html')
 

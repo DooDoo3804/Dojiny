@@ -4,6 +4,12 @@ const csrftokenS = document.querySelector('[name=csrfmiddlewaretoken]').value
 // 결과 띄우는 창만 수정하면 됨
 const resultBox = document.querySelector('#result-Box')
 
+searchInput.addEventListener('keydown', function (event) {
+  if (event.code === "Enter") {
+    event.preventDefault()
+  }
+})
+
 searchInput.addEventListener('keyup', function (event) {
   // const allBehinds = event.target.dataset.behindContent
 
