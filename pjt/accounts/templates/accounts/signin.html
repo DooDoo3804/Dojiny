@@ -1,11 +1,22 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
 {% load static %}
-
-{% block css %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static "css/signup.css" %}">
-{% endblock css %}
+  <title>Document</title>
+</head>
+<body>
+  <div class="login-alert" id="login-alert">
+    <div class="login-alert-modal">
+      {% for message in messages %}
+        <p class="alert-message">{{ message }}</p>
+      {% endfor %}
+    </div>
+  </div>
 
-{% block content %}
   <div class="signin">
     <div class="login-tag">
       <a href="{% url 'accounts:signup' %}" class="a active"><h1>SIGN UP</h1></a>
@@ -15,19 +26,19 @@
     <form action="{% url 'accounts:signin' %}" method="POST">
       {% csrf_token %}
       <div class='input'>
-          <label for="{{ form.username.id_for_label }}">Email / Username</label><br>
-          {{ form.username }}
+        <label for="{{ form.username.id_for_label }}">Email / Username</label><br>
+        {{ form.username }}
       </div>
       <div class="input margin">
-          <label for="{{ form.password.id_for_label }}">Password</label><br>
-          {{ form.password }}
+        <label for="{{ form.password.id_for_label }}">Password</label><br>
+        {{ form.password }}
       </div>
       <div class="submit">
         <input type="submit" class="submit-btn margin" value="SIGN IN">  
       </div>
-      {% for message in messages %}
-        {{ message }}
-      {% endfor %}
     </form>
   </div>
-{% endblock content %}
+
+  <script type="text/javascript" src="{% static "js/signin-alert.js" %}"></script>
+</body>
+</html>

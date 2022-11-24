@@ -5,9 +5,9 @@ searchBtn.addEventListener('click', (e) => {
   modalScreen.style.display = "block"
 })
 
-modalScreen.addEventListener("click", e => {
+modalScreen.addEventListener("click", (e) => {
   const evTarget = e.target
   if (evTarget.classList.contains("modal-box")) {
     modalScreen.style.display = "none"
   }
-});
+})

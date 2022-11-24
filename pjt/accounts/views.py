@@ -60,7 +60,7 @@ def signup(request) :
             if User.objects.filter(username=request.POST.get('username')).exists():
                 messages.add_message(request, messages.ERROR, '이미 존재하는 username 입니다.')
             if '@' not in request.POST.get('email'):
-                messages.add_message(request, messages.ERROR, '올바른 email을 입력해 주세요')
+                messages.add_message(request, messages.ERROR, '올바른 email을 입력해 주세요.')
         form = CustomUserCreationForm()
         context = {
             'form': form,

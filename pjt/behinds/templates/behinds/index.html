@@ -67,7 +67,7 @@
             </div>
 
             <div class="in-content-box">
-              <a href="{% url 'behinds:detail' behind.pk %} "><h2>{{ behind.title }}</h2></a>    
+              <a href="{% url 'behinds:detail' behind.pk %} " class="content-a"><h2>{{ behind.title }}</h2></a>    
               {% if behind.content|length > 300 %}
                 <p>{{ behind.content | slice:"301" }}...</p>
               {% else %}

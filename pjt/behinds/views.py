@@ -96,13 +96,20 @@ def create(request):
                 behind.save()
                 return redirect('behinds:index')
             else:
+                beforeTitle = request.POST.get("title")[0:50]
+                beforeContent = request.POST.get("content")
                 if len(request.POST.get('title')) > 50:
                     messages.add_message(request, messages.ERROR, '제목은 최대 50자까지 작성이 가능합니다.')
                 if(request.POST.get("content").strip() == ''):
                     messages.add_message(request, messages.ERROR, '본문을 입력해 주세요')
                 if (request.POST.get("title").strip() == ''):
                     messages.add_message(request, messages.ERROR, '제목을 입력해 주세요')
-            return render(request, 'behinds/create.html')
+                context = {
+                    'flag' : True,
+                    "beforeTitle" : beforeTitle,
+                    "beforeContent" : beforeContent,
+                }
+            return render(request, 'behinds/create.html', context)
         else:
             return render(request, 'behinds/create.html')
     # 로그인을 했지만 권한이 없는 사용자
