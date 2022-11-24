@@ -28,7 +28,7 @@
         {% if flag %}
           <input type="text" name="title" id="title" value = "{{ beforeTitle }}">
         {% else %}
-          <input type="text" name="title" id="title" placeholder = "   제목을 입력하세요.">
+          <input type="text" name="title" id="title" placeholder = "제목을 입력하세요.">
         {% endif %}
       </div>
       <div class="content">
@@ -44,5 +44,5 @@
       {% comment %} <input type="submit" value="제출" class="submit-btn"> {% endcomment %}
     </form>
   </div>
-  <a href="{% url 'behinds:index' %}"><img src="{% static "images/back.png" %}" alt=""></a>
+  <a href="{% url 'behinds:index' %}"><img src="{% static "images/back.png" %}" alt="" class="back"></a>
 {% endblock content %}

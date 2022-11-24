@@ -38,11 +38,6 @@
               {{ form.email }}
               {{ form.email.errors }}
             </div>
-            <div class="input">
-              {% comment %} <label for="{{ form.email.id_for_label }}">Email</label><br> {% endcomment %}
-              {{ form.profile_image }}
-              {% comment %} {{ form.email.errors }} {% endcomment %}
-            </div>
           </div>
           {% comment %} {{ passwordForm.as_p }} {% endcomment %}
           <div class="first">
@@ -54,6 +49,11 @@
             <div class="input">
               <label for="{{ passwordForm.new_password2.id_for_label }}">New Password2</label><br>
               {{ passwordForm.new_password2 }}
+            </div>
+            <div class="input" id="img-update">
+              {% comment %} <label for="{{ form.email.id_for_label }}">Email</label><br> {% endcomment %}
+              {{ form.profile_image }}
+              {% comment %} {{ form.email.errors }} {% endcomment %}
             </div>
           </div>
         </div>

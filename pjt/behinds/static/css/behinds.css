@@ -66,6 +66,11 @@ a {
   margin-right: 10px;
   /* margin-top: 10px; */
   border-radius: 50px;
+  border: 2px solid black;
+}
+
+#director {
+  font-size: 20px;
 }
 
 .img {
@@ -137,6 +142,7 @@ a {
   caret-color: black;
   font-size: medium;
   font-family: behind;
+  box-shadow: 5px 5px #262626;
 }
 
 .input:focus {
@@ -230,7 +236,8 @@ a {
   border-radius: 50px;
   position: absolute;
   transform: translateX(-50%) translateY(-50%);
-  box-shadow: 10px 10px #d9d9d9;
+  /* box-shadow: 10px 10px #d9d9d9; */
+  border: 5px solid black;
 }
 
 .modal-form {
