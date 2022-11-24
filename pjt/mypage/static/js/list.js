@@ -122,7 +122,7 @@ formArr.forEach(form => {
 
         resdatas.forEach((data) => {
           imgListStar.innerHTML += `
-          <img src="https://image.tmdb.org/t/p/w500${data.poster_url}" alt="movie img" class="movie-img">
+          <a href='http://127.0.0.1:8000/movies/${data.pk}/detail/'><img src="https://image.tmdb.org/t/p/w500${data.poster_url}" alt="movie img" class="movie-img">
           `
         })
 

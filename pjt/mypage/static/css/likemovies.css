@@ -40,9 +40,9 @@ body {
   overflow-x: scroll;
 }
 
-/* .img-list::-webkit-scrollbar {
+.img-list::-webkit-scrollbar {
   display: none;
-} */
+}
 
 .star-btn {
   margin-bottom: 50px;

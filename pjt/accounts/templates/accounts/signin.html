@@ -26,7 +26,7 @@
     <form action="{% url 'accounts:signin' %}" method="POST">
       {% csrf_token %}
       <div class='input'>
-        <label for="{{ form.username.id_for_label }}">Username</label><br>
+        <label for="{{ form.username.id_for_label }}">Email / Username</label><br>
         {{ form.username }}
       </div>
       <div class="input margin">
