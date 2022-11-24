@@ -27,7 +27,7 @@ def index(request) :
                 movies = Movie.objects.all()
                 users = get_user_model().objects.all()
                 data = []
-                movies_title = Movie.objects.filter(title__icontains = inputContent)
+                movies_title = Movie.objects.filter(title__icontains = inputContent)[0:20]
                 if len(inputContent) > 0 and len(movies_title) > 0:
                     for movie in movies_title:
                         item = {
