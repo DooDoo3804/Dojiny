@@ -100,6 +100,7 @@ formArr.forEach(form => {
         const imgListStar = document.querySelector(`#img-list-star${stars}`)
         imgListStar.innerHTML = ``
         resdatas = res.data
+        console.log(resdatas[0])
         if (res.data[0].status === 'over') {
           console.log('over')
           const returnstarlist = res.data[0].returnstarlist
